@@ -19,6 +19,10 @@ h1 {
     margin-right: 100px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -32,21 +36,57 @@ h1 {
 }
 
 .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.photographer_section article:hover {
+  transform: scale(1.1);
+
 }
 
 .photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
+  color: #D3573C;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 47px;
+  margin: 0;
+}
+
+.photographer_section article h3 {
+  color: #901C1C;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  margin: 0 0 5px 0px;
+
+}
+
+.photographer_section article h4 {
+  color: #000000;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  margin: 0 0 5px 0px;
+}
+
+.photographer_section article p {
+  color: #757575;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 12px;
+  margin: 0;
 }
 
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    obejct-fit: cover!important;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
 }
