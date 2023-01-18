@@ -15,8 +15,8 @@ async function getPhotographers() {
       if (res.ok) {
           let data = await res.json();
           photographers = data.photographers;
+          console.log(photographers);
       }
-      console.log(photographers);
       return photographers;
   }
 
@@ -25,6 +25,7 @@ async function getPhotographers() {
       return new Error(err);
   };
 };
+
 
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
