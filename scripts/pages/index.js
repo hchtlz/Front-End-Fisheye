@@ -1,19 +1,22 @@
+// Loader
 window.onload = () => {
   const loader = document.querySelector('.loader_container');
   loader.classList.add('hidden');
 }
 
+// Fetch du Json
 async function getPhotographers() {
 
   try {
       let photographers = []
       const JSONFile = 'data/photographers.json';
 
-      let res = await fetch(JSONFile)
+      let res = await fetch(JSONFile, {mode: 'no-cors'})
       if (res.ok) {
           let data = await res.json();
           photographers = data.photographers;
       }
+      console.log(photographers);
       return photographers;
   }
 
@@ -21,7 +24,6 @@ async function getPhotographers() {
       console.log(err);
       return new Error(err);
   };
-
 };
 
 async function displayData(photographers) {
@@ -35,12 +37,6 @@ async function displayData(photographers) {
 };
 
 async function init() {
-
-  // pour utilisation de Promise //
-  // getPhotographers().then((photographers)=>{
-  //     displayData(photographers);
-  // };
-
 
   // Récupère les datas des photographes
   const photographers = await getPhotographers();
