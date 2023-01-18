@@ -1,28 +1,51 @@
-    async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
+window.onload = () => {
+  const loader = document.querySelector('.loader_container');
+  loader.classList.add('hidden');
+}
 
-      const response = await fetch("/data/photographers.json", { mode : "no-cors" });
-      let photographers = await response.json();
-      console.log(photographers);
+async function getPhotographers() {
+
+  try {
+      let photographers = []
+      const JSONFile = 'data/photographers.json';
+
+      let res = await fetch(JSONFile)
+      if (res.ok) {
+          let data = await res.json();
+          photographers = data.photographers;
+      }
       return photographers;
-    };
+  }
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+  catch (err) {
+      console.log(err);
+      return new Error(err);
+  };
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
+};
 
-    async function init() {
-        // Récupère les datas des photographescode .
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    };
-    
-    init();
-    
+async function displayData(photographers) {
+  const photographersSection = document.querySelector(".photographer_section");
+  // console.log('photographers' + photographers);
+  photographers.forEach((photographer) => {
+      const photographerModel = photographerFactory(photographer);
+      const userCardDOM = photographerModel.getUserCardDOM();
+      photographersSection.appendChild(userCardDOM);
+  });
+};
+
+async function init() {
+
+  // pour utilisation de Promise //
+  // getPhotographers().then((photographers)=>{
+  //     displayData(photographers);
+  // };
+
+
+  // Récupère les datas des photographes
+  const photographers = await getPhotographers();
+  // Affiche les Photographes
+  displayData(photographers);
+};
+
+init();
