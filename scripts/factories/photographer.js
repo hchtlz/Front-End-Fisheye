@@ -80,3 +80,5 @@ function photographerFactory(data) {
   }
   return { name, picture, city, country, tagline, price, id, getUserCardDOM, makeHeader }
 }
+
+export let PhotographerFactory = new photographerFactory();

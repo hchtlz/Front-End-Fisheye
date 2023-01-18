@@ -1,3 +1,11 @@
+// Continuer installation webpack avec la video https://www.youtube.com/watch?v=xz3pqzfEC98&t=534s
+import PhotographerFactory from '../factoriesphotographer';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const photographerFactory = new PhotographerFactory();
+  photographerFactory.init();
+});
+
 // Loader
 window.onload = () => {
   const loader = document.querySelector('.loader_container');
