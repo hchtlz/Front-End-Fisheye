@@ -9,6 +9,7 @@ window.onload = () => {
 
 // Fetch du Json
 function getPhotographers() {
+  console.log(json.photographers);
   return json.photographers;
 };
 

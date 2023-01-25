@@ -1,26 +1,34 @@
 import json from '../../data/photographers.json';
 import photographerFactory from '../factories/photographer.js';
 
-// Fetch du Json
+// Fetch du Json pour retourner les données du photographe sélectionné
+// TODO 
 function getPhotographers() {
-  return json.photographers;
+  const photographer = photographers.find(photographers => photographers.id == ID);
+  console.log("photographer");
+  return json.photographer;
 };
 
-function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
-  photographers.forEach((photographer) => {
-      const photographerModel = photographerFactory(photographer);
-      const userCardDOM = photographerModel.getUserCardDOM();
-      photographersSection.appendChild(userCardDOM);
-  });
-};
+// Afficher les données du photographe sélectionné
+function displayPhotographer(data) {
+  const main = document.getElementById('main');
+  const photographerModel = photographerFactory(data);
+  const userCardDOM = photographerModel.makeHeader();
+  main.appendChild(userCardDOM);
+}
 
 function init() {
-  // Récupère les datas des photographes
-  const photographers = getPhotographers();
-  // Affiche les Photographes
-  displayData(photographers);
-};
+  //Extraction de l'ID du photographe à traiter.
+  let params = (new URL(document.location)).searchParams;
+  const photographerID = params.get('id');
+
+  // Récupère les datas du photographe sélectionné
+  const photographer = getPhotographer(photographerID);
+  // Génère le header de la page du Photographe
+  displayPhotographer(photographer);
+  // Ajoute le nom du photographe dans le header de la modale de contact
+  const contactPhotographer = document.querySelector('.modal header h2');
+  contactPhotographer.innerHTML = 'Contactez-moi : ' + '</br>' + photographer.name;
+}
 
 init();
-// TODO : HEADER PHOTOGRAPHER

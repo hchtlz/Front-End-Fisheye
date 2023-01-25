@@ -75,10 +75,7 @@ export default function photographerFactory(data) {
       // Alimentation du cartouche : Tarif
       const tarif = document.querySelector('.tarif');
       tarif.innerHTML = price + '€/jour';
-
       return photographHeader;
   }
   return { name, picture, city, country, tagline, price, id, getUserCardDOM, makeHeader }
 }
-
-// export let PhotographerFactory = new photographerFactory();
