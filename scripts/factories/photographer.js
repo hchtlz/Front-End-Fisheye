@@ -2,6 +2,9 @@ export default function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/portraits/${portrait}`;
 
+   /*
+    * Création de la carte du photographe
+    */
   function getUserCardDOM() {
       const tagA = document.createElement('a');
       const linkNewPage = `./photographer.html?id=${id}`;
@@ -20,6 +23,7 @@ export default function photographerFactory(data) {
       h3.textContent = city + ', ' + country;
       h4.textContent = tagline;
       p.textContent = price + '€/jour';
+      // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)
       article.appendChild(img);
       article.appendChild(h2);
       article.appendChild(h3);
@@ -27,7 +31,10 @@ export default function photographerFactory(data) {
       article.appendChild(p);
       return (tagA);
   }
-
+  
+  /*
+    * Création du header du photographe
+    */
   function makeHeader() {
 
       // Section 'header'

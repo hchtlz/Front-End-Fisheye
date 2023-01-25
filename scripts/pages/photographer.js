@@ -10,6 +10,7 @@ function getPhotographer() {
 };
 
 // Afficher les données du photographe sélectionné
+// Don't work  :( 
 function displayPhotographer(data) {
   const main = document.getElementById('main');
   const photographerModel = photographerFactory();
