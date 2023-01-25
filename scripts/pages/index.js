@@ -6,6 +6,10 @@
 //   photographerFactory.init();
 // });
 
+import json from '../../data/photographers.json';
+import photographerFactory from '../factories/photographer.js';
+
+console.log(json);
 // Loader
 window.onload = () => {
   const loader = document.querySelector('.loader_container');
@@ -13,31 +17,12 @@ window.onload = () => {
 }
 
 // Fetch du Json
-async function getPhotographers() {
-
-  try {
-      let photographers = []
-      const JSONFile = 'data/photographers.json';
-
-      let res = await fetch(JSONFile, {mode: 'no-cors'})
-      if (res.ok) {
-          let data = await res.json();
-          photographers = data.photographers;
-          console.log(photographers);
-      }
-      return photographers;
-  }
-
-  catch (err) {
-      console.log(err);
-      return new Error(err);
-  };
+function getPhotographers() {
+  return json.photographers;
 };
 
-
-async function displayData(photographers) {
+function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
-  // console.log('photographers' + photographers);
   photographers.forEach((photographer) => {
       const photographerModel = photographerFactory(photographer);
       const userCardDOM = photographerModel.getUserCardDOM();
@@ -45,10 +30,9 @@ async function displayData(photographers) {
   });
 };
 
-async function init() {
-
+function init() {
   // Récupère les datas des photographes
-  const photographers = await getPhotographers();
+  const photographers = getPhotographers();
   // Affiche les Photographes
   displayData(photographers);
 };
