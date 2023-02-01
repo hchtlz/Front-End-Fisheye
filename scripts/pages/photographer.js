@@ -1,8 +1,11 @@
 import photographerFactory from '../factories/photographer.js';
 import { getPhotographers } from '../utils/model.js';
+import { loader } from '../utils/loader.js';
 
-// Fetch du Json pour retourner les données du photographe sélectionné
-// TODO 
+// Loader
+window.onload = () => { loader(); };
+
+// Récupère les données du photographe sélectionné
 const photographers = getPhotographers();
 function getPhotographer(photographerID) {
   const photographer = photographers.find(photographers => photographers.id == photographerID);
@@ -10,7 +13,6 @@ function getPhotographer(photographerID) {
 };
 
 // Afficher les données du photographe sélectionné
-// Don't work  :( 
 function displayPhotographer(data) {
   const main = document.getElementById('main');
   const photographerModel = photographerFactory(data);

@@ -11,27 +11,42 @@
     <header>
       <img src="assets/images/logo.png" class="logo" alt="logo" />
     </header>
-    <!-- <div class="loader_container ">
+    <div class="loader_container ">
       <span class="loader"></span>
-    </div> -->
+    </div> 
     <main id="main">
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
+    <div id="contact_modal" tabindex="-1">
+      <div class="modal" role="dialog">
+        <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
         </header>
-				<form>
-					<div>
-            <!-- TODO -->
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        <form>
+          <div>
+            <label for='firstName'>Prénom</label>
+            <input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
+            <span id="firstNameErr"></span>
+          </div>
+          <div>
+            <label for='lastName'>Nom</label>
+            <input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
+            <span id="lastNameErr"></span>
+          </div>
+          <div>
+            <label for='eMail'>E-mail</label>
+            <input name='eMail' id='eMail' type='email' aria-required="true">
+            <span id="emailErr"></span>
+          </div>
+          <div>
+            <label for='message'>Votre message : </label>
+            <textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
+            <span id="messageErr"></span>
+          </div>
+          <button type="button" class="submit_button" id="submit_button">Envoyer</button>
+        </form>
+      </div>
+    </div>
     <script src="dist/photographer.bundle.js"></script>
   </body>
 </html>

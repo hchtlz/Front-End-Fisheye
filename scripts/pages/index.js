@@ -1,11 +1,9 @@
 import photographerFactory from '../factories/photographer.js';
 import { getPhotographers } from '../utils/model.js';
+import { loader } from '../utils/loader.js';
 
 // Loader
-window.onload = () => {
-  const loader = document.querySelector('.loader_container');
-  loader.classList.add('hidden');
-};
+window.onload = () => { loader(); };
 
 function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");

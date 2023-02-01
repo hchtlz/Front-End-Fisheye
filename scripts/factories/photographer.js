@@ -1,10 +1,14 @@
+import { displayModal } from '../utils/contactForm.js';
+import { closeModal } from '../utils/contactForm.js';
+import { validateForm } from '../utils/contactForm.js';
+
 export default function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/portraits/${portrait}`;
 
-   /*
-    * Création de la carte du photographe
-    */
+  /*
+  * Création de la carte du photographe
+  */
   function getUserCardDOM() {
       const tagA = document.createElement('a');
       const linkNewPage = `./photographer.html?id=${id}`;
@@ -33,14 +37,13 @@ export default function photographerFactory(data) {
   }
   
   /*
-    * Création du header du photographe
-    */
+  * Création du header du photographe
+  */
   function makeHeader() {
 
       // Section 'header'
       const photographHeader = document.createElement('section')
       photographHeader.classList.add('photograph-header')
-      console.log("photographHeader");
 
       // Bloc 'identité'
       const photographerIdentity = document.createElement('div');
@@ -72,8 +75,16 @@ export default function photographerFactory(data) {
       const contact_button = document.createElement('button');
       photographHeader.appendChild(contact_button);
       contact_button.classList.add('contact_button');
-      contact_button.setAttribute('onclick', 'displayModal()');
+      contact_button.onclick = displayModal;
       contact_button.innerHTML = 'Contactez-moi';
+
+      // Fermer la modale
+      const close_button = document.getElementById('closeModal');
+      close_button.onclick = closeModal;
+
+      // Validarion du formulaire
+      const submitForm = document.getElementById('submit_button');
+      submitForm.onclick = validateForm;
 
       // Portrait du Photographe
       const photographerPortrait = document.createElement('div');
