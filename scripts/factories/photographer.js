@@ -40,6 +40,7 @@ export default function photographerFactory(data) {
       // Section 'header'
       const photographHeader = document.createElement('section')
       photographHeader.classList.add('photograph-header')
+      console.log("photographHeader");
 
       // Bloc 'identité'
       const photographerIdentity = document.createElement('div');
@@ -57,6 +58,10 @@ export default function photographerFactory(data) {
       const photographerTagLine = document.createElement('h4');
       photographerIdentity.appendChild(photographerTagLine);
       photographerTagLine.classList.add('photographerTagLine');
+
+      const photographerTarif = document.createElement('p');
+      photographerIdentity.appendChild(photographerTarif);
+      photographerTarif.classList.add('tarif');
 
       // Alimentation des zones HTML
       photographerName.innerHTML = name;
@@ -80,8 +85,7 @@ export default function photographerFactory(data) {
       photographerPortrait.appendChild(imgPortrait)
 
       // Alimentation du cartouche : Tarif
-      const tarif = document.querySelector('.tarif');
-      tarif.innerHTML = price + '€/jour';
+      photographerTarif.innerHTML = price + '€/jour';
       return photographHeader;
   }
   return { name, picture, city, country, tagline, price, id, getUserCardDOM, makeHeader }

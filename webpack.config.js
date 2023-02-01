@@ -2,10 +2,13 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: ['./scripts/pages/index.js', './scripts/pages/photographer.js'],
+  entry: {
+    index: './scripts/pages/index.js', 
+    photographer: './scripts/pages/photographer.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: "[name].bundle.js",
   },
   watch: true,
 };

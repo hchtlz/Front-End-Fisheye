@@ -1,15 +1,10 @@
-import json from '../../data/photographers.json';
 import photographerFactory from '../factories/photographer.js';
+import { getPhotographers } from '../utils/model.js';
 
 // Loader
 window.onload = () => {
   const loader = document.querySelector('.loader_container');
   loader.classList.add('hidden');
-}
-
-// Fetch du Json
-function getPhotographers() {
-  return json.photographers;
 };
 
 function displayData(photographers) {
