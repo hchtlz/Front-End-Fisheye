@@ -59,9 +59,9 @@ export default function photographerFactory(data) {
       photographerIdentity.appendChild(photographerTagLine);
       photographerTagLine.classList.add('photographerTagLine');
 
-      const photographerTarif = document.createElement('p');
-      photographerIdentity.appendChild(photographerTarif);
-      photographerTarif.classList.add('tarif');
+      // const photographerTarif = document.createElement('p');
+      // photographerIdentity.appendChild(photographerTarif);
+      // photographerTarif.classList.add('tarif');
 
       // Alimentation des zones HTML
       photographerName.innerHTML = name;
@@ -84,8 +84,9 @@ export default function photographerFactory(data) {
       imgPortrait.setAttribute('alt', 'Portrait de ' + name)
       photographerPortrait.appendChild(imgPortrait)
 
-      // Alimentation du cartouche : Tarif
-      photographerTarif.innerHTML = price + '€/jour';
+      // // Alimentation du cartouche : Tarif
+      // photographerTarif.innerHTML = price + '€/jour';
+      
       return photographHeader;
   }
   return { name, picture, city, country, tagline, price, id, getUserCardDOM, makeHeader }

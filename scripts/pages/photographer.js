@@ -6,7 +6,6 @@ import { getPhotographers } from '../utils/model.js';
 const photographers = getPhotographers();
 function getPhotographer(photographerID) {
   const photographer = photographers.find(photographers => photographers.id == photographerID);
-  console.log(photographer);
   return photographer;
 };
 
