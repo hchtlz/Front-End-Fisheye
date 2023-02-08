@@ -43,7 +43,7 @@ export function validateForm(event) {
     document.getElementById("email").style.border = "1px solid red";
   }
   if (message.length < 10) {
-    let error = true;
+    error = true;
     messageError.innerHTML = "Veuillez entrer un message d'au moins 10 caractères";
     document.getElementById("message").style.border = "1px solid red";
   }

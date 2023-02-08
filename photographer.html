@@ -31,7 +31,7 @@
             <h2>Contactez-moi</h2>
             <img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
           </header>
-          <form method="post">
+          <form method="post" onsubmit="return validateForm(event)">
             <div>
               <label for='firstName'>Prénom</label>
               <input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
