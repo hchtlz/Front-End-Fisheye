@@ -1,32 +1,32 @@
 import { displayModal } from '../utils/contactForm.js';
 import { closeModal } from '../utils/contactForm.js';
 import { validateForm } from '../utils/contactForm.js';
+import { Photographer } from '../models/photographer.js';
 
 export default function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
-  const picture = `assets/portraits/${portrait}`;
-
+  const photographerObject = new Photographer(data);
+  const picture = `assets/portraits/${photographerObject.portrait}`;
   /*
   * Création de la carte du photographe
   */
   function getUserCardDOM() {
       const tagA = document.createElement('a');
-      const linkNewPage = `./photographer.html?id=${id}`;
+      const linkNewPage = `./photographer.html?id=${photographerObject.id}`;
       tagA.setAttribute('href', linkNewPage);
 
       const article = document.createElement('article');
       tagA.appendChild(article);
       const img = document.createElement('img');
       img.setAttribute("src", picture);
-      img.setAttribute('alt', 'Portrait de ' + name)
+      img.setAttribute('alt', 'Portrait de ' + photographerObject.name)
       const h2 = document.createElement('h2');
       const h3 = document.createElement('h3');
       const h4 = document.createElement('h4');
       const p = document.createElement('p');
-      h2.textContent = name;
-      h3.textContent = city + ', ' + country;
-      h4.textContent = tagline;
-      p.textContent = price + '€/jour';
+      h2.textContent = photographerObject.name;
+      h3.textContent = photographerObject.city + ', ' + photographerObject.country;
+      h4.textContent = photographerObject.tagline;
+      p.textContent = photographerObject.price + '€/jour';
       // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)
       article.appendChild(img);
       article.appendChild(h2);
@@ -67,9 +67,9 @@ export default function photographerFactory(data) {
       // photographerTarif.classList.add('tarif');
 
       // Alimentation des zones HTML
-      photographerName.innerHTML = name;
-      photographerCity.innerHTML = city + ', ' + country;
-      photographerTagLine.innerHTML = tagline;
+      photographerName.innerHTML = photographerObject.name;
+      photographerCity.innerHTML = photographerObject.city + ', ' + photographerObject.country;
+      photographerTagLine.innerHTML = photographerObject.tagline;
 
       // Bouton "Contactez-moi"
       const contact_button = document.createElement('button');
@@ -92,13 +92,14 @@ export default function photographerFactory(data) {
       photographerPortrait.classList.add('photographerPortrait');
       const imgPortrait = document.createElement('img');
       imgPortrait.setAttribute("src", picture);
-      imgPortrait.setAttribute('alt', 'Portrait de ' + name)
+      imgPortrait.setAttribute('alt', 'Portrait de ' + photographerObject.name)
       photographerPortrait.appendChild(imgPortrait)
 
-      // // Alimentation du cartouche : Tarif
-      // photographerTarif.innerHTML = price + '€/jour';
+      // Alimentation du cartouche : Tarif
+      const tarif = document.querySelector('.price')
+      tarif.innerHTML = photographerObject.price + '€/jour'
       
       return photographHeader;
   }
-  return { name, picture, city, country, tagline, price, id, getUserCardDOM, makeHeader }
+  return { getUserCardDOM, makeHeader }
 }

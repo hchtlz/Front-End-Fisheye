@@ -233,3 +233,34 @@ form textarea {
       transform: rotate(-360deg);
   }
 }
+
+.likes_info {
+  align-items: center;
+  background-color: #DB8876;
+  border-radius: 5px;
+  bottom: 0;
+  color: #000;
+  display: flex;
+  font-weight: 500;
+  height: 50px;
+  justify-content: space-around;
+  opacity: 1;
+  position: fixed;
+  right: 15px;
+  transition: opacity 0.3s ease-in-out;
+  width: 320px;
+  z-index: 10;
+}
+
+.likes_info:hover {
+  opacity: 0.3;
+}
+
+.likes {
+  align-items: center;
+  display: flex;
+}
+
+.quantity-likes {
+  margin-right: 5px;
+}
