@@ -10,8 +10,10 @@ export function closeModal() {
 
 // validation du formulaire
 
-// DONT WORK YET
-export function validateForm() {
+export function validateForm(event) {
+  event.preventDefault();
+
+  let error = false;
 
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
@@ -26,15 +28,23 @@ export function validateForm() {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
   if (firstName.length < 2) {
+    let error = true;
     firstNameError.innerHTML = "Veuillez entrer votre prénom";
+    document.getElementById("firstName").style.border = "1px solid red";
   }
   if (lastName.length < 2) {
+    let error = true;
     lastNameError.innerHTML = "Veuillez entrer votre nom";
+    document.getElementById("lastName").style.border = "1px solid red";
   }
   if (!emailRegex.test(email)) {
+    let error = true;
     emailError.innerHTML = "Veuillez entrer une adresse mail valide";
+    document.getElementById("email").style.border = "1px solid red";
   }
   if (message.length < 10) {
-    messageError.innerHTML = "Veuillez entrer un message";
+    let error = true;
+    messageError.innerHTML = "Veuillez entrer un message d'au moins 10 caractères";
+    document.getElementById("message").style.border = "1px solid red";
   }
 }
