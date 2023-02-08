@@ -25,34 +25,36 @@
       </div>
     </main>
     <div id="contact_modal" tabindex="-1">
-      <div class="modal" role="dialog">
-        <header>
-          <h2>Contactez-moi</h2>
-          <img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
-        </header>
-        <form>
-          <div>
-            <label for='firstName'>Prénom</label>
-            <input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
-            <span id="firstNameErr"></span>
-          </div>
-          <div>
-            <label for='lastName'>Nom</label>
-            <input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
-            <span id="lastNameErr"></span>
-          </div>
-          <div>
-            <label for='eMail'>E-mail</label>
-            <input name='eMail' id='email' type='email' aria-required="true">
-            <span id="emailErr"></span>
-          </div>
-          <div>
-            <label for='message'>Votre message : </label>
-            <textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
-            <span id="messageErr"></span>
-          </div>
-          <button type="button" class="submit_button" id="submit_button">Envoyer</button>
-        </form>
+      <div class="modal-background">
+        <div class="modal" role="dialog">
+          <header>
+            <h2>Contactez-moi</h2>
+            <img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
+          </header>
+          <form method="post">
+            <div>
+              <label for='firstName'>Prénom</label>
+              <input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
+              <span id="firstNameErr"></span>
+            </div>
+            <div>
+              <label for='lastName'>Nom</label>
+              <input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
+              <span id="lastNameErr"></span>
+            </div>
+            <div>
+              <label for='eMail'>E-mail</label>
+              <input name='eMail' id='email' type='email' aria-required="true">
+              <span id="emailErr"></span>
+            </div>
+            <div>
+              <label for='message'>Votre message : </label>
+              <textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
+              <span id="messageErr"></span>
+            </div>
+            <button type="submit" class="submit_button" id="submit_button">Envoyer</button>
+          </form>
+        </div>
       </div>
     </div>
     <script src="dist/photographer.bundle.js"></script>

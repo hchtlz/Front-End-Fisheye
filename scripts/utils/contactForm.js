@@ -28,17 +28,17 @@ export function validateForm(event) {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
   if (firstName.length < 2) {
-    let error = true;
+    error = true;
     firstNameError.innerHTML = "Veuillez entrer votre prénom";
     document.getElementById("firstName").style.border = "1px solid red";
   }
   if (lastName.length < 2) {
-    let error = true;
+    error = true;
     lastNameError.innerHTML = "Veuillez entrer votre nom";
     document.getElementById("lastName").style.border = "1px solid red";
   }
   if (!emailRegex.test(email)) {
-    let error = true;
+    error = true;
     emailError.innerHTML = "Veuillez entrer une adresse mail valide";
     document.getElementById("email").style.border = "1px solid red";
   }
@@ -46,5 +46,8 @@ export function validateForm(event) {
     let error = true;
     messageError.innerHTML = "Veuillez entrer un message d'au moins 10 caractères";
     document.getElementById("message").style.border = "1px solid red";
+  }
+  if (!error) {
+    closeModal();
   }
 }

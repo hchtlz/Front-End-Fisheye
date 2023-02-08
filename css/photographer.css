@@ -82,6 +82,7 @@
   align-items: center;
   background-color: #DB8876;
   border-radius: 5px;
+  box-shadow: 8px 9px 34px -9px rgb(0 0 0 / 36%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,6 +95,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 25%;
+}
+.modal-background {
+  background-color: #cacaca91;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
 }
 
 .modal header {
