@@ -1,8 +1,7 @@
 import photographerFactory from '../factories/photographer.js';
-import { mediaFactory } from '../factories/media.js';
 import { getPhotographers } from '../utils/model.js';
-import { getMedia } from '../utils/model.js';
 import { loader } from '../utils/loader.js';
+
 
 // Loader
 window.onload = () => { loader(); };

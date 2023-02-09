@@ -2,10 +2,16 @@ import { displayModal } from '../utils/contactForm.js';
 import { closeModal } from '../utils/contactForm.js';
 import { validateForm } from '../utils/contactForm.js';
 import { Photographer } from '../models/photographer.js';
+import { Media } from '../models/media.js';
 
 export default function photographerFactory(data) {
   const photographerObject = new Photographer(data);
+  const mediaObject = new Media(data);
   const picture = `assets/portraits/${photographerObject.portrait}`;
+  
+  console.log(photographerObject);
+  console.log(mediaObject);
+  
   /*
   * Création de la carte du photographe
   */
