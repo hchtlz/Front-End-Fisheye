@@ -4,6 +4,7 @@ export class Video {
     this._photographerId = data.photographerId;
     this._title = data.title;
     this._video = data.video;
+    this._src = 'assets/media/' + data.video;
     this._likes = data.likes;
     this._date = data.date;
     this._price = data.price;
@@ -23,6 +24,10 @@ export class Video {
 
   get video() {
     return this._video;
+  }
+
+  get src() {
+    return this._src;
   }
 
   get likes() {

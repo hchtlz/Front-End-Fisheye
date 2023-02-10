@@ -6,9 +6,14 @@ import { closeModal } from '../utils/contactForm.js';
 import { validateForm } from '../utils/contactForm.js';
 import { MediaFactory } from '../factories/media.js';
 
-// Loader
+
+// ********* LOADER *********
+
 window.onload = () => { loader(); };
   
+
+// ********* HEADER *********
+
 /*
 * Création du header du photographe
 */
@@ -62,12 +67,32 @@ function makeHeader(photographerObject) {
   photographerPortrait.appendChild(media.renderMedia(photographerObject));
   photographerPortrait.querySelector('img').setAttribute('alt', 'Portrait de ' + photographerObject.name);
 
+// ********* LIKES *********
+
   // Alimentation du cartouche : Tarif
   const tarif = document.querySelector('.price')
   tarif.innerHTML = photographerObject.price + '€/jour'
+
+  // Recupération de la somme des likes
+  const photographerMedia = getPhotographerMedia();
+  let sum = 0;
+  photographerMedia.forEach((media) => {
+    sum += media.likes;
+  });
+  photographerObject.likes = sum;
+
+  // Alimentation du cartouche : Quantité de likes
+  const likes = document.querySelector('.likes')
+  likes.innerHTML = photographerObject.likes + ' <i class="fas fa-heart"></i>'
+  likes.onclick = () => {
+    photographerObject.likes++;
+    likes.innerHTML = photographerObject.likes + ' <i class="fas fa-heart"></i>'
+  }
   
   return photographHeader;
 }
+
+// ********* AFFICHAGE PHOTOGRAPHE *********
 
 // Récupère les données du photographe sélectionné
 const photographers = getPhotographers();
@@ -83,6 +108,8 @@ function displayPhotographer(data) {
   main.appendChild(userCardDOM);
 }
 
+// ********* AFFICHAGE MEDIAS *********
+
 // Récuper l'id du photographe de la page
 function getPhotographerId() {
   const url = new URL(window.location.href);
@@ -90,7 +117,7 @@ function getPhotographerId() {
   return photographerId;
 };
 
-// Récuperer tous les médias du photographe et les r
+// Récuperer tous les médias du photographe
 function getPhotographerMedia() {
   const photographerMedia = getMedia().filter(media => media.photographerId == getPhotographerId());
   return photographerMedia;
@@ -138,6 +165,7 @@ function displayPhotographerMedia() {
 };
 displayPhotographerMedia();
 
+// ********* FUNCTION INIT *********
 function init() {
   //Extraction de l'ID du photographe à traiter.
   let params = (new URL(document.location)).searchParams;

@@ -17,13 +17,21 @@
     <main id="main">
       <div class="likes_info" tabindex="-1" aria-hidden="true">
         <div class="likes">
-          <p class="quantity-likes">0</p>
-          <i class="fa-solid fa-heart"></i>
         </div>
         <div class="price"></div>
       </div>
     </main>
-    <section class="media_section"> 
+    <article class="tag_section"></article>
+    <section> 
+      <div class="media_tri">
+        <label>Trier par</label>
+        <select class="media_tri_input">
+          <option value="popularite" id="sortPopular">Popularité</option>
+          <option value="date" id="sortDate">Date</option>
+          <option value="titre" id="sortId">Titre</option>
+        </select>
+      </div>
+      <div class="media_section"></div>
     </section>
     <div id="contact_modal" tabindex="-1">
       <div class="modal-background">
