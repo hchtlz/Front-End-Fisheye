@@ -271,3 +271,44 @@ form textarea {
 .quantity-likes {
   margin-right: 5px;
 }
+
+.media_section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 100px 100px 0 100px;
+}
+.media_card {
+  margin-bottom: 40px;
+  width: 350px;
+  margin: 0 auto 40px auto;
+}
+.media_card img,
+.media_card video {
+  border-radius: 5px;
+  height: 300px;
+  object-fit: cover;
+  width: 350px;
+}
+
+.media_card-info{
+  align-items: center;
+  color: #901C1C;
+  display: flex;
+  height: 20px;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.media_card-likes {
+  align-items: center;
+  display: flex;
+}
+.media_card-likes-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.media_card-likes-button i {
+  color: #901C1C;
+}
