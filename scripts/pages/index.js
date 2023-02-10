@@ -1,6 +1,6 @@
 import { getPhotographers } from '../utils/model.js';
 import { loader } from '../utils/loader.js';
-import { Photographer } from '../models/photographer.js';
+import { MediaFactory } from '../factories/media.js';
 
 // Loader
 window.onload = () => { loader(); };
@@ -8,16 +8,29 @@ window.onload = () => { loader(); };
 /*
 * Création de la carte du photographe
 */
-function getUserCardDOM(data) {
-  const photographerObject = new Photographer(data);
+function getUserCardDOM(photographerObject) {
   const tagA = document.createElement('a');
   const linkNewPage = `./photographer.html?id=${photographerObject.id}`;
   tagA.setAttribute('href', linkNewPage);
 
   const article = document.createElement('article');
+
+  
+  // A DEBUGGER 
+  // const media = new MediaFactory();
+  // const photographerImage = document.createElement('div');
+  // article.appendChild(photographerImage);
+  // photographerImage.classList.add('photographerImage');
+  // photographerImage.appendChild(media.renderMedia(photographerObject, 'portrait'));
+
+
+  // A REMPLACER PAR LE CODE CI-DESSUS
   tagA.appendChild(article);
   const img = document.createElement('img');
+  img.setAttribute('src', 'assets/portraits/' + photographerObject.portrait);
   img.setAttribute('alt', 'Portrait de ' + photographerObject.name)
+
+
   const h2 = document.createElement('h2');
   const h3 = document.createElement('h3');
   const h4 = document.createElement('h4');

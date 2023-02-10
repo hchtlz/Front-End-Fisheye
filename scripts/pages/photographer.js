@@ -6,13 +6,66 @@ import { closeModal } from '../utils/contactForm.js';
 import { validateForm } from '../utils/contactForm.js';
 import { MediaFactory } from '../factories/media.js';
 
-// Récuper les médias du photographe sélectionné
-// DON'T WORK YET
-
-function getMediaByPhotographerId(photographerID) {
-  const media = getMedia().find(media => media.photographerId == photographerID);
-  return media;
+// Récuper l'id du photographe de la page
+function getPhotographerId() {
+  const url = new URL(window.location.href);
+  const photographerId = url.searchParams.get('id');
+  return photographerId;
 };
+
+// Récuperer tous les médias du photographe et les r
+function getPhotographerMedia() {
+  const photographerMedia = getMedia().filter(media => media.photographerId == getPhotographerId());
+  return photographerMedia;
+};
+ 
+// Retourner le titre des médias du photographe
+function getPhotographerMediaTitle() {
+  const photographerMediaTitle = getPhotographerMedia().map(media => media.title);
+  document.querySelector('.media_title').innerHTML = photographerMediaTitle.length + ' ' + 'photos';
+  return photographerMediaTitle;
+};
+
+// Afficher les médias du photographe
+function displayPhotographerMedia() {
+  const photographerMedia = getPhotographerMedia();
+  const photographerMediaSection = document.querySelector('.media_section');
+  photographerMedia.forEach((media) => {
+    // Création de la div contenant les médias
+    const mediaDiv = document.createElement('div');
+    mediaDiv.classList.add('media');
+    photographerMediaSection.appendChild(mediaDiv);
+    // Rendu des médias
+    const mediaFactory = new MediaFactory();
+    mediaDiv.appendChild(mediaFactory.renderMedia(media));
+    // Creation de la div contenant les likes et le titre 
+    const mediaInfo = document.createElement('div');
+    mediaInfo.classList.add('media_info');
+    mediaDiv.appendChild(mediaInfo);
+    // Ajout du titre
+    const mediaTitle = document.createElement('h3');
+    mediaTitle.classList.add('media_title');
+    mediaInfo.appendChild(mediaTitle);
+    mediaTitle.innerHTML = media.title;
+    // Ajout des likes
+    const mediaLikes = document.createElement('p');
+    mediaLikes.classList.add('media_likes');
+    mediaInfo.appendChild(mediaLikes);
+    mediaLikes.innerHTML = media.likes + ' ' + 'likes';
+    // Ajout du bouton like
+    const likeButton = document.createElement('button');
+    likeButton.classList.add('like_button');
+    mediaInfo.appendChild(likeButton);
+    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+    // Ajout du bouton like
+    likeButton.onclick = () => {
+      media.likes++;
+      mediaLikes.innerHTML = media.likes + ' ' + 'likes';
+    };
+  });
+};
+displayPhotographerMedia();
+
 
 // Loader
 window.onload = () => { loader(); };
@@ -70,8 +123,6 @@ function makeHeader(photographerObject) {
   photographerPortrait.appendChild(media.renderMedia(photographerObject));
   photographerPortrait.querySelector('img').setAttribute('alt', 'Portrait de ' + photographerObject.name);
 
-  
-
   // Alimentation du cartouche : Tarif
   const tarif = document.querySelector('.price')
   tarif.innerHTML = photographerObject.price + '€/jour'
@@ -105,6 +156,6 @@ function init() {
   // Ajoute le nom du photographe dans le header de la modale de contact
   const contactPhotographer = document.querySelector('.modal header h2');
   contactPhotographer.innerHTML = 'Contactez-moi : ' + '</br>' + photographer.name;
-}
+};
 
 init();

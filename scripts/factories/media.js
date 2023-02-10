@@ -11,7 +11,6 @@ export class MediaFactory {
     } else {
       throw new Error('Type must be either "image" or "video"');
     }
-    console.log(data)
     return factory.createHTML(data);
   }
 }

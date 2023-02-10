@@ -10,13 +10,53 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./scripts/models/photographer.js":
-/*!****************************************!*\
-  !*** ./scripts/models/photographer.js ***!
-  \****************************************/
+/***/ "./scripts/factories/image.js":
+/*!************************************!*\
+  !*** ./scripts/factories/image.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Photographer\": () => (/* binding */ Photographer)\n/* harmony export */ });\nclass Photographer {\n  constructor (data) {\n    this._id = data.id;\n    this._name = data.name;\n    this._city = data.city;\n    this._country = data.country;\n    this._tags = data.tags;\n    this._tagline = data.tagline;\n    this._price = data.price;\n    this._portrait = data.portrait;\n  }\n\n  get id() {\n    return this._id;\n  }\n\n  get name() {\n    return this._name;\n  }\n\n  get city() {\n    return this._city;\n  }\n\n  get country() {\n    return this._country;\n  }\n\n  get tags() {\n    return this._tags;\n  }\n\n  get tagline() {\n    return this._tagline;\n  }\n\n  get price() {\n    return this._price;\n  }\n\n  get portrait() {\n    return this._portrait;\n  }\n}\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/models/photographer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ImageFactory\": () => (/* binding */ ImageFactory)\n/* harmony export */ });\n/* harmony import */ var _models_image__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/image */ \"./scripts/models/image.js\");\n\n\nclass ImageFactory {\n    createHTML(data) {\n        const image = new _models_image__WEBPACK_IMPORTED_MODULE_0__.Image(data);\n        let element = document.createElement('img');\n        element.setAttribute('src', image.src);\n        element.setAttribute('alt', image.alt);\n        element.className = 'media';\n\n        return element;\n    }\n}\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/factories/image.js?");
+
+/***/ }),
+
+/***/ "./scripts/factories/media.js":
+/*!************************************!*\
+  !*** ./scripts/factories/media.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"MediaFactory\": () => (/* binding */ MediaFactory)\n/* harmony export */ });\n/* harmony import */ var _factories_image__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../factories/image */ \"./scripts/factories/image.js\");\n/* harmony import */ var _factories_video__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../factories/video */ \"./scripts/factories/video.js\");\n\n\n\nclass MediaFactory {\n  renderMedia(data) {\n    let factory = null;\n    if (data.hasOwnProperty('image') || data.hasOwnProperty('portrait')) {\n      factory = new _factories_image__WEBPACK_IMPORTED_MODULE_0__.ImageFactory();\n    } else if (data.hasOwnProperty('video')) {\n      factory = new _factories_video__WEBPACK_IMPORTED_MODULE_1__.VideoFactory();\n    } else {\n      throw new Error('Type must be either \"image\" or \"video\"');\n    }\n    return factory.createHTML(data);\n  }\n}\n\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/factories/media.js?");
+
+/***/ }),
+
+/***/ "./scripts/factories/video.js":
+/*!************************************!*\
+  !*** ./scripts/factories/video.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"VideoFactory\": () => (/* binding */ VideoFactory)\n/* harmony export */ });\n/* harmony import */ var _models_video__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/video */ \"./scripts/models/video.js\");\n\n\nclass VideoFactory {\n    createHTML(data) {\n        const video = new _models_video__WEBPACK_IMPORTED_MODULE_0__.Video(data);\n        let element = document.createElement('video');\n        element.setAttribute('controls', '');\n        element.setAttribute('src', video.src);\n        element.className = 'media';\n\n        return element;\n    }\n}\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/factories/video.js?");
+
+/***/ }),
+
+/***/ "./scripts/models/image.js":
+/*!*********************************!*\
+  !*** ./scripts/models/image.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Image\": () => (/* binding */ Image)\n/* harmony export */ });\nclass Image {\n  constructor (data) {\n    this._id = data.id;\n    this._photographerId = data.photographerId;\n    this._title = data.title;\n    if (data.hasOwnProperty('portrait')) {\n      this._src = 'assets/portraits/' + data.portrait;\n    } else if (data.hasOwnProperty('image')) {\n      this._src = 'assets/media/' + data.image;\n    }\n    this._likes = data.likes;\n    this._date = data.date;\n    this._price = data.price;\n  }\n\n  get id() {\n    return this._id;\n  }\n\n  get photographerId() {\n    return this._photographerId;\n  }\n\n  get title() {\n    return this._title;\n  }\n\n  get src() {\n    return this._src;\n  }\n\n  get likes() {\n    return this._likes;\n  }\n\n  get date() {\n    return this._date;\n  }\n\n  get price() {\n    return this._price;\n  }\n}\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/models/image.js?");
+
+/***/ }),
+
+/***/ "./scripts/models/video.js":
+/*!*********************************!*\
+  !*** ./scripts/models/video.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Video\": () => (/* binding */ Video)\n/* harmony export */ });\nclass Video {\n  constructor (data) {\n    this._id = data.id;\n    this._photographerId = data.photographerId;\n    this._title = data.title;\n    this._video = data.video;\n    this._likes = data.likes;\n    this._date = data.date;\n    this._price = data.price;\n  }\n\n  get id() {\n    return this._id;\n  }\n\n  get photographerId() {\n    return this._photographerId;\n  }\n\n  get title() {\n    return this._title;\n  }\n\n  get video() {\n    return this._video;\n  }\n\n  get likes() {\n    return this._likes;\n  }\n\n  get date() {\n    return this._date;\n  }\n\n  get price() {\n    return this._price;\n  }\n}\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/models/video.js?");
 
 /***/ }),
 
@@ -26,7 +66,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_model_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/model.js */ \"./scripts/utils/model.js\");\n/* harmony import */ var _utils_loader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/loader.js */ \"./scripts/utils/loader.js\");\n/* harmony import */ var _models_photographer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/photographer.js */ \"./scripts/models/photographer.js\");\n\n\n\n\n// Loader\nwindow.onload = () => { (0,_utils_loader_js__WEBPACK_IMPORTED_MODULE_1__.loader)(); };\n\n/*\n* Création de la carte du photographe\n*/\nfunction getUserCardDOM(data) {\n  const photographerObject = new _models_photographer_js__WEBPACK_IMPORTED_MODULE_2__.Photographer(data);\n  const tagA = document.createElement('a');\n  const linkNewPage = `./photographer.html?id=${photographerObject.id}`;\n  tagA.setAttribute('href', linkNewPage);\n\n  const article = document.createElement('article');\n  tagA.appendChild(article);\n  const img = document.createElement('img');\n  img.setAttribute('alt', 'Portrait de ' + photographerObject.name)\n  const h2 = document.createElement('h2');\n  const h3 = document.createElement('h3');\n  const h4 = document.createElement('h4');\n  const p = document.createElement('p');\n  h2.textContent = photographerObject.name;\n  h3.textContent = photographerObject.city + ', ' + photographerObject.country;\n  h4.textContent = photographerObject.tagline;\n  p.textContent = photographerObject.price + '€/jour';\n  \n  // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)\n  article.appendChild(img);\n  article.appendChild(h2);\n  article.appendChild(h3);\n  article.appendChild(h4);\n  article.appendChild(p);\n  return (tagA);\n}\n\nfunction displayData(photographers) {\n  const photographersSection = document.querySelector(\".photographer_section\");\n  photographers.forEach((photographer) => {\n      const userCardDOM = getUserCardDOM(photographer);\n      photographersSection.appendChild(userCardDOM);\n  });\n};\n\nfunction init() {\n  // Récupère les datas des photographes\n  const photographers = (0,_utils_model_js__WEBPACK_IMPORTED_MODULE_0__.getPhotographers)();\n  // Affiche les Photographes\n  displayData(photographers);\n};\n\ninit();\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/pages/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_model_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/model.js */ \"./scripts/utils/model.js\");\n/* harmony import */ var _utils_loader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/loader.js */ \"./scripts/utils/loader.js\");\n/* harmony import */ var _factories_media_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../factories/media.js */ \"./scripts/factories/media.js\");\n\n\n\n\n// Loader\nwindow.onload = () => { (0,_utils_loader_js__WEBPACK_IMPORTED_MODULE_1__.loader)(); };\n\n/*\n* Création de la carte du photographe\n*/\nfunction getUserCardDOM(photographerObject) {\n  const tagA = document.createElement('a');\n  const linkNewPage = `./photographer.html?id=${photographerObject.id}`;\n  tagA.setAttribute('href', linkNewPage);\n\n  const article = document.createElement('article');\n\n  \n  // A DEBUGGER \n  // const media = new MediaFactory();\n  // const photographerImage = document.createElement('div');\n  // article.appendChild(photographerImage);\n  // photographerImage.classList.add('photographerImage');\n  // photographerImage.appendChild(media.renderMedia(photographerObject, 'portrait'));\n\n\n  // A REMPLACER PAR LE CODE CI-DESSUS\n  tagA.appendChild(article);\n  const img = document.createElement('img');\n  img.setAttribute('src', 'assets/portraits/' + photographerObject.portrait);\n  img.setAttribute('alt', 'Portrait de ' + photographerObject.name)\n\n\n  const h2 = document.createElement('h2');\n  const h3 = document.createElement('h3');\n  const h4 = document.createElement('h4');\n  const p = document.createElement('p');\n  h2.textContent = photographerObject.name;\n  h3.textContent = photographerObject.city + ', ' + photographerObject.country;\n  h4.textContent = photographerObject.tagline;\n  p.textContent = photographerObject.price + '€/jour';\n  \n  // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)\n  article.appendChild(img);\n  article.appendChild(h2);\n  article.appendChild(h3);\n  article.appendChild(h4);\n  article.appendChild(p);\n  return (tagA);\n}\n\nfunction displayData(photographers) {\n  const photographersSection = document.querySelector(\".photographer_section\");\n  photographers.forEach((photographer) => {\n      const userCardDOM = getUserCardDOM(photographer);\n      photographersSection.appendChild(userCardDOM);\n  });\n};\n\nfunction init() {\n  // Récupère les datas des photographes\n  const photographers = (0,_utils_model_js__WEBPACK_IMPORTED_MODULE_0__.getPhotographers)();\n  // Affiche les Photographes\n  displayData(photographers);\n};\n\ninit();\n\n//# sourceURL=webpack://front-end-fisheye/./scripts/pages/index.js?");
 
 /***/ }),
 
