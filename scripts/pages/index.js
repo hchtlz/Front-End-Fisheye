@@ -15,21 +15,14 @@ function getUserCardDOM(photographerObject) {
 
   const article = document.createElement('article');
 
-  
-  // A DEBUGGER 
-  // const media = new MediaFactory();
-  // const photographerImage = document.createElement('div');
-  // article.appendChild(photographerImage);
-  // photographerImage.classList.add('photographerImage');
-  // photographerImage.appendChild(media.renderMedia(photographerObject, 'portrait'));
+  const media = new MediaFactory();
+  const photographerImage = document.createElement('div');
+  photographerImage.classList.add('photographerImage');
+  photographerImage.appendChild(media.renderMedia(photographerObject, 'portrait'));
+  article.appendChild(photographerImage);
 
 
-  // A REMPLACER PAR LE CODE CI-DESSUS
   tagA.appendChild(article);
-  const img = document.createElement('img');
-  img.setAttribute('src', 'assets/portraits/' + photographerObject.portrait);
-  img.setAttribute('alt', 'Portrait de ' + photographerObject.name)
-
 
   const h2 = document.createElement('h2');
   const h3 = document.createElement('h3');
@@ -41,7 +34,7 @@ function getUserCardDOM(photographerObject) {
   p.textContent = photographerObject.price + '€/jour';
   
   // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)
-  article.appendChild(img);
+  article.appendChild(photographerImage);
   article.appendChild(h2);
   article.appendChild(h3);
   article.appendChild(h4);

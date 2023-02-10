@@ -18,6 +18,7 @@ window.onload = () => { loader(); };
 * Création du header du photographe
 */
 function makeHeader(photographerObject) {
+
   // Section 'header'
   const photographHeader = document.createElement('section')
   photographHeader.classList.add('photograph-header')
@@ -101,7 +102,9 @@ function getPhotographer(photographerID) {
   return photographer;
 };
 
-// Afficher les données du photographe sélectionné
+/* 
+* Afficher les données du photographe sélectionné
+*/
 function displayPhotographer(data) {
   const main = document.getElementById('main');
   const userCardDOM = makeHeader(data);
@@ -110,40 +113,51 @@ function displayPhotographer(data) {
 
 // ********* AFFICHAGE MEDIAS *********
 
-// Récuper l'id du photographe de la page
+/* 
+* Récupérer l'id du photographe 
+*/
 function getPhotographerId() {
   const url = new URL(window.location.href);
   const photographerId = url.searchParams.get('id');
   return photographerId;
 };
 
-// Récuperer tous les médias du photographe
+/* 
+*Récuperer tous les médias du photographe
+*/
 function getPhotographerMedia() {
   const photographerMedia = getMedia().filter(media => media.photographerId == getPhotographerId());
   return photographerMedia;
 };
 
-// Afficher les médias du photographe
+/*
+* Afficher les médias du photographe
+*/ 
 function displayPhotographerMedia() {
   const photographerMedia = getPhotographerMedia();
   const photographerMediaSection = document.querySelector('.media_section');
   photographerMedia.forEach((media) => {
+
     // Création de la div contenant les médias
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media_card');
     photographerMediaSection.appendChild(mediaDiv);
+
     // Rendu des médias
     const mediaFactory = new MediaFactory();
     mediaDiv.appendChild(mediaFactory.renderMedia(media));
+
     // Creation de la div contenant les likes et le titre 
     const mediaInfo = document.createElement('div');
     mediaInfo.classList.add('media_card-info');
     mediaDiv.appendChild(mediaInfo);
+
     // Ajout du titre
     const mediaTitle = document.createElement('h3');
     mediaTitle.classList.add('media_card-title');
     mediaInfo.appendChild(mediaTitle);
     mediaTitle.innerHTML = media.title;
+
     // Ajout des likes et du bouton like dans la div
     const mediaLikes = document.createElement('div');
     mediaLikes.classList.add('media_card-likes');
@@ -156,25 +170,41 @@ function displayPhotographerMedia() {
     mediaLikesButton.classList.add('media_card-likes-button');
     mediaLikes.appendChild(mediaLikesButton);
     mediaLikesButton.innerHTML = '<i class="fas fa-heart"></i>';
-    // Ajout du nombre de likes
+
+    // Ajout des likes sous le média et incrémentation des likes dans la cartouche du photographe
     mediaLikesButton.onclick = () => {
       media.likes++;
       mediaLikesNumber.innerHTML = media.likes;
-    };
+      const likes = document.querySelector('.likes')
+      likes.innerHTML = parseInt(likes.innerHTML) + 1 + ' <i class="fas fa-heart"></i>'
+    }
+
+    // Pouvoir liker les médias une seule fois
+    mediaLikesButton.addEventListener('click', () => {
+      mediaLikesButton.disabled = true;
+    });
+
+    // Focus sur le coeur quand le media est liké et l'enlever quand on clique sur le bouton like
+    mediaLikesButton.addEventListener('click', () => {
+      mediaLikesButton.classList.add('liked');
+    });
   });
 };
 displayPhotographerMedia();
 
 // ********* FUNCTION INIT *********
 function init() {
+
   //Extraction de l'ID du photographe à traiter.
   let params = (new URL(document.location)).searchParams;
   const photographerID = params.get('id');
 
   // Récupère les datas du photographe sélectionné
   const photographer = getPhotographer(photographerID);
+
   // Génère le header de la page du Photographe
   displayPhotographer(photographer);
+
   // Ajoute le nom du photographe dans le header de la modale de contact
   const contactPhotographer = document.querySelector('.modal header h2');
   contactPhotographer.innerHTML = 'Contactez-moi : ' + '</br>' + photographer.name;

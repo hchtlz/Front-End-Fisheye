@@ -279,6 +279,7 @@ form textarea {
 .media_section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 100px;
 }
 
 .media_tri {
@@ -302,10 +303,6 @@ form textarea {
   width: 350px;
 }
 
-.media_card:hover {
-  transform: scale(1.1);
-}
-
 .media_card img,
 .media_card video {
   border-radius: 5px;
@@ -314,6 +311,12 @@ form textarea {
   width: 350px;
 }
 
+.media_card img:hover,
+.media_card video:hover {
+  transform: scale(1.04);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
 
 .media_card-info{
   align-items: center;
@@ -323,6 +326,10 @@ form textarea {
   height: 20px;
   justify-content: space-between;
   margin-top: 15px;
+}
+
+.media_card-info h3 {
+  font-weight: 500;
 }
 
 .media_card-likes {
@@ -339,3 +346,13 @@ form textarea {
   color: #901C1C;
   font-size: 20px;
 }
+
+.media_card-likes-button i:hover {
+  color: #DB8876;
+  transition: transform 0.3s ease-in-out 0.1s, color 0.2s ease-in-out 0.1s;
+  transform: scale(1.2);
+}
+
+.liked i {
+  color: #DB8876;
+} 
