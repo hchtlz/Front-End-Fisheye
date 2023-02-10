@@ -1,9 +1,13 @@
-export class Media {
+export class Image {
   constructor (data) {
     this._id = data.id;
     this._photographerId = data.photographerId;
     this._title = data.title;
-    this._image = data.image;
+    if (data.hasOwnProperty('portrait')) {
+      this._src = 'assets/portraits/' + data.portrait;
+    } else if (data.hasOwnProperty('image')) {
+      this._src = 'assets/media/' + data.image;
+    }
     this._likes = data.likes;
     this._date = data.date;
     this._price = data.price;
@@ -21,8 +25,8 @@ export class Media {
     return this._title;
   }
 
-  get image() {
-    return this._image;
+  get src() {
+    return this._src;
   }
 
   get likes() {

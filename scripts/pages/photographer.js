@@ -1,10 +1,83 @@
-import photographerFactory from '../factories/photographer.js';
 import { getPhotographers } from '../utils/model.js';
+import { getMedia } from '../utils/model.js';
 import { loader } from '../utils/loader.js';
+import { displayModal } from '../utils/contactForm.js';
+import { closeModal } from '../utils/contactForm.js';
+import { validateForm } from '../utils/contactForm.js';
+import { MediaFactory } from '../factories/media.js';
 
+// Récuper les médias du photographe sélectionné
+// DON'T WORK YET
+
+function getMediaByPhotographerId(photographerID) {
+  const media = getMedia().find(media => media.photographerId == photographerID);
+  return media;
+};
 
 // Loader
 window.onload = () => { loader(); };
+  
+/*
+* Création du header du photographe
+*/
+function makeHeader(photographerObject) {
+  // Section 'header'
+  const photographHeader = document.createElement('section')
+  photographHeader.classList.add('photograph-header')
+
+  // Bloc 'identité'
+  const photographerIdentity = document.createElement('div');
+  photographHeader.appendChild(photographerIdentity);
+  photographerIdentity.classList.add('photographerIdentity');
+
+  const photographerName = document.createElement('h2');
+  photographerIdentity.appendChild(photographerName);
+  photographerName.classList.add('photographerName');
+
+  const photographerCity = document.createElement('h3');
+  photographerIdentity.appendChild(photographerCity);
+  photographerCity.classList.add('photographerCity');
+
+  const photographerTagLine = document.createElement('h4');
+  photographerIdentity.appendChild(photographerTagLine);
+  photographerTagLine.classList.add('photographerTagLine');
+
+  // Alimentation des zones HTML
+  photographerName.innerHTML = photographerObject.name;
+  photographerCity.innerHTML = photographerObject.city + ', ' + photographerObject.country;
+  photographerTagLine.innerHTML = photographerObject.tagline;
+
+  // Bouton "Contactez-moi"
+  const contact_button = document.createElement('button');
+  photographHeader.appendChild(contact_button);
+  contact_button.classList.add('contact_button');
+  contact_button.onclick = displayModal;
+  contact_button.innerHTML = 'Contactez-moi';
+
+  // Fermer la modale
+  const close_button = document.getElementById('closeModal');
+  close_button.onclick = closeModal;
+
+  // Validarion du formulaire
+  const submitForm = document.getElementById('submit_button');
+  submitForm.onclick = validateForm;
+
+  // Portrait du Photographe
+  const media = new MediaFactory();
+  const photographerPortrait = document.createElement('div');
+  photographHeader.appendChild(photographerPortrait);
+  photographerPortrait.classList.add('photographerPortrait');
+  photographerPortrait.appendChild(media.renderMedia(photographerObject));
+  photographerPortrait.querySelector('img').setAttribute('alt', 'Portrait de ' + photographerObject.name);
+
+  
+
+  // Alimentation du cartouche : Tarif
+  const tarif = document.querySelector('.price')
+  tarif.innerHTML = photographerObject.price + '€/jour'
+  
+  return photographHeader;
+}
 
 // Récupère les données du photographe sélectionné
 const photographers = getPhotographers();
@@ -16,8 +89,7 @@ function getPhotographer(photographerID) {
 // Afficher les données du photographe sélectionné
 function displayPhotographer(data) {
   const main = document.getElementById('main');
-  const photographerModel = photographerFactory(data);
-  const userCardDOM = photographerModel.makeHeader();
+  const userCardDOM = makeHeader(data);
   main.appendChild(userCardDOM);
 }
 

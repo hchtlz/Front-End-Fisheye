@@ -1,15 +1,45 @@
-import photographerFactory from '../factories/photographer.js';
 import { getPhotographers } from '../utils/model.js';
 import { loader } from '../utils/loader.js';
+import { Photographer } from '../models/photographer.js';
 
 // Loader
 window.onload = () => { loader(); };
 
+/*
+* Création de la carte du photographe
+*/
+function getUserCardDOM(data) {
+  const photographerObject = new Photographer(data);
+  const tagA = document.createElement('a');
+  const linkNewPage = `./photographer.html?id=${photographerObject.id}`;
+  tagA.setAttribute('href', linkNewPage);
+
+  const article = document.createElement('article');
+  tagA.appendChild(article);
+  const img = document.createElement('img');
+  img.setAttribute('alt', 'Portrait de ' + photographerObject.name)
+  const h2 = document.createElement('h2');
+  const h3 = document.createElement('h3');
+  const h4 = document.createElement('h4');
+  const p = document.createElement('p');
+  h2.textContent = photographerObject.name;
+  h3.textContent = photographerObject.city + ', ' + photographerObject.country;
+  h4.textContent = photographerObject.tagline;
+  p.textContent = photographerObject.price + '€/jour';
+  
+  // Ajout des éléments dans l'article avec appendChild ( ajouter img dans article par exemple)
+  article.appendChild(img);
+  article.appendChild(h2);
+  article.appendChild(h3);
+  article.appendChild(h4);
+  article.appendChild(p);
+  return (tagA);
+}
+
 function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
   photographers.forEach((photographer) => {
-      const photographerModel = photographerFactory(photographer);
-      const userCardDOM = photographerModel.getUserCardDOM();
+      const userCardDOM = getUserCardDOM(photographer);
       photographersSection.appendChild(userCardDOM);
   });
 };
