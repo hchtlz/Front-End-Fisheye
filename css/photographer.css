@@ -1,6 +1,9 @@
 body {
   margin: 0 100px!important;
 }
+.nav-logo{
+  cursor: pointer;
+}
 
 #contact_modal {
     display: none;
@@ -309,6 +312,7 @@ form textarea {
   height: 300px;
   object-fit: cover;
   width: 350px;
+  overflow-clip-margin: unset;
 }
 
 .media_card img:hover,
