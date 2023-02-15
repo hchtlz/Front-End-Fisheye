@@ -126,18 +126,60 @@ function getPhotographerId() {
 *Récuperer tous les médias du photographe
 */
 function getPhotographerMedia() {
-  const photographerMedia = getMedia().filter(media => media.photographerId == getPhotographerId());
+  const photographerMedia = getMedia().filter(media => media.photographerId == getPhotographerId()).sort((a, b) => b.likes - a.likes);
   return photographerMedia;
 };
+
+// Creer un select avec des options pour trier les médias par popularité, date ou titre
+
+function createSelect() {
+  const select = document.createElement('select');
+  select.classList.add('media_tri_input');
+  const option1 = document.createElement('option');
+  option1.value = 'popularite';
+  option1.innerHTML = 'Popularité';
+  const option2 = document.createElement('option');
+  option2.value = 'date';
+  option2.innerHTML = 'Date';
+  const option3 = document.createElement('option');
+  option3.value = 'titre';
+  option3.innerHTML = 'Titre';
+  select.appendChild(option1);
+  select.appendChild(option2);
+  select.appendChild(option3);
+  return select;
+}
+createSelect();
+
+
+// Trier les médias par popularité, date ou titre
+function sortPhotographerMedia(){
+  const photographerMedia = getPhotographerMedia();
+  const object = document.querySelector('.media_tri_input');
+
+  if (object.value == 'date') {
+    photographerMedia.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+  else if (object.value == 'titre') {
+    photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
+  }
+  console.log(photographerMedia);
+
+  displayPhotographerMedia(photographerMedia);
+};
+
+const object = document.querySelector('.media_tri_input');
+object.addEventListener("change", sortPhotographerMedia);
 
 /*
 * Afficher les médias du photographe
 */ 
-function displayPhotographerMedia() {
-  const photographerMedia = getPhotographerMedia();
+function displayPhotographerMedia(photographerMedia) {
   const photographerMediaSection = document.querySelector('.media_section');
+  photographerMediaSection.innerHTML = '';
+  console.log(photographerMedia);
   photographerMedia.forEach((media) => {
-
+    
     // Création de la div contenant les médias
     const mediaDiv = document.createElement('div');
     mediaDiv.classList.add('media_card');
@@ -190,7 +232,9 @@ function displayPhotographerMedia() {
     });
   });
 };
-displayPhotographerMedia();
+
+const photographerMedia = getPhotographerMedia();
+displayPhotographerMedia(photographerMedia);
 
 // ********* FUNCTION INIT *********
 function init() {
