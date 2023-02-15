@@ -238,6 +238,9 @@ init();
 
 
 
+
+
+// ********* FONCTION TRI TEST *********
 var x, i, j, l, ll, selElmnt, a, b, c;
 
 /* Look for any elements with the class "media_tri": */
@@ -324,3 +327,26 @@ function closeAllSelect(elmnt) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
+
+
+
+
+
+
+// ********* FUNCTION LIGHTBOX TEST *********
+const media = document.querySelectorAll('.media_card');
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    const modal = document.querySelector('.test');
+    modal.classList.add('open');
+  });
+});
+
+const close = document.querySelector('#closeModal');
+close.addEventListener('click', () => {
+  const modal = document.querySelector('.test');
+  modal.classList.remove('open');
+}
+);
+
+

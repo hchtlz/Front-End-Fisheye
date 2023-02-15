@@ -366,7 +366,6 @@ form textarea {
 
 
 
-
 .filter_input {
   display: flex;
   align-items: center;
@@ -394,24 +393,37 @@ form textarea {
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
-  position: absolute;
   content: "";
-  top: 30px;
-  right: 24px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  z-index: 11;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  top: 21px;
+  right: 36px;
+  transform: rotate(225deg);
 }
 
 .select-selected.select-arrow-active{
   border-radius: 5px 5px 0 0;
+  margin: 0;
 }
 
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 25px;
+  content: "";
+  position: absolute;
+  z-index: 11;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  top: 30px;
+  right: 36px;
+  transform: rotate(45deg);
 }
 
 /* style the items (options), including the selected item: */
@@ -421,9 +433,8 @@ form textarea {
   border-top: solid 1px #ffffff;
   cursor: pointer;
   min-width: 90px;
-}
 
-/* Style items (options): */
+}
 .select-items {
   position: absolute;
   background-color: #901C1C;
@@ -435,11 +446,23 @@ form textarea {
   border-bottom-left-radius: 5px;
 }
 
-/* Hide the items when the select box is closed: */
 .select-hide {
   display: none;
 }
 
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.test.open{
+  align-items: center;
+  background-color: red;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 100;
 }
