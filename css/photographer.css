@@ -1,5 +1,6 @@
-body {
-  margin: 0 100px!important;
+#main,
+.filter_input {
+  margin : 0 100px; 
 }
 .nav-logo{
   cursor: pointer;
@@ -73,8 +74,7 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-// Contact Modal
-
+/* Contact Modal */
 #contact_modal {
   background-color: rgba(255, 255, 255, 0.8);
   height: 100%;
@@ -171,8 +171,8 @@ form textarea {
   resize: none;
   width: 100%;
 }
-/* Loader */
 
+/* Loader */
 .loader_container {
   position: fixed;
   top: 0;
@@ -310,16 +310,16 @@ form textarea {
 .media_card video {
   border-radius: 5px;
   height: 300px;
-  object-fit: cover;
   width: 350px;
   overflow-clip-margin: unset;
+  object-fit: cover;
 }
 
 .media_card img:hover,
 .media_card video:hover {
+  cursor: pointer;
   transform: scale(1.04);
   transition: transform 0.3s ease-in-out;
-  cursor: pointer;
 }
 
 .media_card-info{
@@ -333,6 +333,7 @@ form textarea {
 }
 
 .media_card-info h3 {
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -361,10 +362,7 @@ form textarea {
   color: #DB8876;
 } 
 
-
-
-
-
+/* Filter Input */
 
 .filter_input {
   display: flex;
@@ -383,7 +381,7 @@ form textarea {
 }
 
 .media_tri select {
-  display: none; /*hide original SELECT element: */
+  display: none; 
 }
 
 .select-selected {
@@ -392,19 +390,19 @@ form textarea {
   border-radius: 5px;
 }
 
-/* Style the arrow inside the select element: */
 .select-selected:after {
+  border-left: 4px solid #fff;
+  border-top: 4px solid #fff;
   content: "";
-  position: absolute;
-  z-index: 11;
   display: block;
-  width: 14px;
-  height: 14px;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  top: 21px;
+  height: 12px;
+  position: absolute;
   right: 36px;
+  top: 21px;
   transform: rotate(225deg);
+  transition: transform 0.3s ease-in-out;
+  width: 12px;
+  z-index: 11;
 }
 
 .select-selected.select-arrow-active{
@@ -412,40 +410,41 @@ form textarea {
   margin: 0;
 }
 
-/* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
+  border-left: 4px solid #fff;
+  border-top: 4px solid #fff;
   content: "";
-  position: absolute;
-  z-index: 11;
   display: block;
-  width: 14px;
-  height: 14px;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  top: 30px;
+  height: 12px;
+  position: absolute;
   right: 36px;
+  top: 30px;
   transform: rotate(45deg);
+  transition: transform 0.3s ease-in-out;
+  width: 12px;
+  z-index: 11;
 }
-.same-as-selected { display: none; }
+.same-as-selected { 
+  display: none; 
+}
 
-/* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-  color: #ffffff;
-  padding: 20px 63px 20px 23px;
   border-top: solid 1px #ffffff;
+  color: #ffffff;
   cursor: pointer;
   min-width: 90px;
+  padding: 20px 63px 20px 23px;
 
 }
 .select-items {
-  position: absolute;
   background-color: #901C1C;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 99;
 }
 
 .select-hide {
@@ -457,11 +456,7 @@ form textarea {
 }
 
 
-
-
-
-
-/* The Modal (background) */
+/* Lightbox */
 .lightbox-background.open {
   align-items: center;
   background-color: #cacaca91;
@@ -489,6 +484,7 @@ form textarea {
   border-radius: 5px;
   height: 600px;
   object-fit: cover;
-  width: 1050px;
+  object-position: 0 -84px;
   overflow-clip-margin: unset;
+  width: 1050px;
 }

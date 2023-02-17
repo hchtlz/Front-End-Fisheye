@@ -143,7 +143,6 @@ function sortPhotographerMedia(){
   else if (object.value == 'titre') {
     photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
   }
-  console.log(photographerMedia);
 
   displayPhotographerMedia(photographerMedia);
 };
@@ -216,31 +215,7 @@ const photographerMedia = getPhotographerMedia();
 displayPhotographerMedia(photographerMedia);
 
 
-// ********* FUNCTION INIT *********
-function init() {
-
-  //Extraction de l'ID du photographe à traiter.
-  let params = (new URL(document.location)).searchParams;
-  const photographerID = params.get('id');
-
-  // Récupère les datas du photographe sélectionné
-  const photographer = getPhotographer(photographerID);
-
-  // Génère le header de la page du Photographe
-  displayPhotographer(photographer);
-
-  // Ajoute le nom du photographe dans le header de la modale de contact
-  const contactPhotographer = document.querySelector('.modal header h2');
-  contactPhotographer.innerHTML = 'Contactez-moi : ' + '</br>' + photographer.name;
-};
-
-init();
-
-
-
-
-
-// ********* FONCTION TRI TEST *********
+// ********* TRI *********
 var x, i, j, l, ll, selElmnt, a, b, c;
 
 /* Look for any elements with the class "media_tri": */
@@ -331,15 +306,10 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
 
-
-
-
-
-// ********* FUNCTION LIGHTBOX TEST *********
+// ********* LIGHTBOX *********
 
 const media = document.querySelectorAll('.media');
 const gallery = new Gallery (media);
-console.log(gallery);
 
 // Ouverture de la lightbox
 media.forEach((media) => {
@@ -362,35 +332,42 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     modal.classList.remove('open');
   }
-}
-);
-
-// Affichage hello dans la lightbox si media est une image et world si media est une vidéo
-const lightbox = document.querySelector('.lightbox-media');
-
-media.forEach((media) => {
-  media.addEventListener('click', () => {
-    if (media.nodeName === 'IMG') {
-      lightbox.innerHTML = 'Hello';
-    } else if (media.nodeName === 'VIDEO') {
-      lightbox.innerHTML = 'World';
-    }
-  });
 });
 
-// Affichage de l'image dans la lightbox
-media.forEach((media) => {
-  media.addEventListener('click', () => {
-    if (media.nodeName === 'IMG') {
-      lightbox.innerHTML = media.outerHTML;
-    }
-    else if (media.nodeName === 'VIDEO') {
-      lightbox.innerHTML = media.outerHTML;
-    }
-  });
-});
+// // Affichage de l'image dans la lightbox
+// media.forEach((media) => {
+//   media.addEventListener('click', () => {
+//     if (media.nodeName === 'IMG') {
+//       lightbox.innerHTML = media.outerHTML;
+//     }
+//     else if (media.nodeName === 'VIDEO') {
+//       lightbox.innerHTML = media.outerHTML;
+//     }
+//   });
+// });
 
-// Display none sur la lightbox-media quand on ferme la lightbox
-close.addEventListener('click', () => {
-  lightbox.innerHTML = '';
-});
+// // Display none sur la lightbox-media quand on ferme la lightbox
+// close.addEventListener('click', () => {
+//   lightbox.innerHTML = '';
+// });
+
+
+// ********* FUNCTION INIT *********
+function init() {
+
+  //Extraction de l'ID du photographe à traiter.
+  let params = (new URL(document.location)).searchParams;
+  const photographerID = params.get('id');
+
+  // Récupère les datas du photographe sélectionné
+  const photographer = getPhotographer(photographerID);
+
+  // Génère le header de la page du Photographe
+  displayPhotographer(photographer);
+
+  // Ajoute le nom du photographe dans le header de la modale de contact
+  const contactPhotographer = document.querySelector('.modal header h2');
+  contactPhotographer.innerHTML = 'Contactez-moi : ' + '</br>' + photographer.name;
+};
+
+init();
