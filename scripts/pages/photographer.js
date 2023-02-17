@@ -319,38 +319,40 @@ media.forEach((media) => {
   });
 });
 
-// Fermeture de la lightbox
-const close = document.querySelector('#close-lightbox');
-close.addEventListener('click', () => {
-  const modal = document.querySelector('.lightbox-background');
+// Fermeture de la lightbox et vider la div lightbox-media
+const modal = document.querySelector('.lightbox-background');
+modal.addEventListener('click', (event) => {
+  const lightboxMedia = document.querySelector('.lightbox-media');
+  if (event.target === modal) {
+    modal.classList.remove('open');
+    lightboxMedia.innerHTML = '';
+  }
+});
+
+// Fermeture de la lightbox avec la croix
+const closeLightbox = document.querySelector('#close-lightbox');
+closeLightbox.addEventListener('click', () => {
+  const lightboxMedia = document.querySelector('.lightbox-media');
   modal.classList.remove('open');
+  lightboxMedia.innerHTML = '';
 });
 
 // Fermeture de la lightbox avec la touche échap
 document.addEventListener('keydown', (event) => {
-  const modal = document.querySelector('.lightbox-background');
+  const lightboxMedia = document.querySelector('.lightbox-media');
   if (event.key === 'Escape') {
     modal.classList.remove('open');
+    lightboxMedia.innerHTML = '';
   }
 });
 
-// // Affichage de l'image dans la lightbox
-// media.forEach((media) => {
-//   media.addEventListener('click', () => {
-//     if (media.nodeName === 'IMG') {
-//       lightbox.innerHTML = media.outerHTML;
-//     }
-//     else if (media.nodeName === 'VIDEO') {
-//       lightbox.innerHTML = media.outerHTML;
-//     }
-//   });
-// });
-
-// // Display none sur la lightbox-media quand on ferme la lightbox
-// close.addEventListener('click', () => {
-//   lightbox.innerHTML = '';
-// });
-
+// Afficher le media dans la div lightbox-media
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    const lightboxMedia = document.querySelector('.lightbox-media');
+    lightboxMedia.innerHTML = media.outerHTML;
+  });
+});
 
 // ********* FUNCTION INIT *********
 function init() {
