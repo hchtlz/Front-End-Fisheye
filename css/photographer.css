@@ -389,6 +389,7 @@ form textarea {
 .select-selected {
   background-color: #901C1C;
   font-weight: 600;
+  border-radius: 5px;
 }
 
 /* Style the arrow inside the select element: */
@@ -425,6 +426,7 @@ form textarea {
   right: 36px;
   transform: rotate(45deg);
 }
+.same-as-selected { display: none; }
 
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
@@ -454,15 +456,39 @@ form textarea {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.test.open{
+
+
+
+
+
+/* The Modal (background) */
+.lightbox-background.open {
   align-items: center;
-  background-color: red;
+  background-color: #cacaca91;
   display: flex;
   height: 100vh;
   justify-content: center;
   left: 0;
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 100;
+}
+#close-lightbox{
+  cursor: pointer;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 20px;
+  z-index: 100;
+}
+
+.lightbox-media img,
+.lightbox-media video {
+  border-radius: 5px;
+  height: 600px;
+  object-fit: cover;
+  width: 1050px;
+  overflow-clip-margin: unset;
 }

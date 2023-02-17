@@ -5,6 +5,7 @@ import { displayModal } from '../utils/contactForm.js';
 import { closeModal } from '../utils/contactForm.js';
 import { validateForm } from '../utils/contactForm.js';
 import { MediaFactory } from '../factories/media.js';
+import { Gallery } from '../models/gallery.js';
 
 
 // ********* LOADER *********
@@ -156,7 +157,6 @@ object.addEventListener("change", sortPhotographerMedia);
 function displayPhotographerMedia(photographerMedia) {
   const photographerMediaSection = document.querySelector('.media_section');
   photographerMediaSection.innerHTML = '';
-  console.log(photographerMedia);
   photographerMedia.forEach((media) => {
     
     // Création de la div contenant les médias
@@ -259,14 +259,15 @@ for (i = 0; i < l; i++) {
   /* For each element, create a new DIV that will contain the option list: */
   b = document.createElement("DIV");
   b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < ll; j++) {
+  for (j = 0; j < ll; j++) {
     
     /* For each option in the original select element,
     create a new DIV that will act as an option item: */
     c = document.createElement("DIV");
+    if (j==0) {c.setAttribute("class", "same-as-selected");}
     c.innerHTML = selElmnt.options[j].innerHTML;
     c.addEventListener("click", function(e) {
-        
+      
       /* When an item is clicked, update the original select box,
         and the selected item: */
         var y, i, k, s, h, sl, yl;
@@ -283,6 +284,7 @@ for (i = 0; i < l; i++) {
               y[k].removeAttribute("class");
             }
             this.setAttribute("class", "same-as-selected");
+            sortPhotographerMedia();
             break;
           }
         }
@@ -334,19 +336,61 @@ document.addEventListener("click", closeAllSelect);
 
 
 // ********* FUNCTION LIGHTBOX TEST *********
-const media = document.querySelectorAll('.media_card');
+
+const media = document.querySelectorAll('.media');
+const gallery = new Gallery (media);
+console.log(gallery);
+
+// Ouverture de la lightbox
 media.forEach((media) => {
   media.addEventListener('click', () => {
-    const modal = document.querySelector('.test');
+    const modal = document.querySelector('.lightbox-background');
     modal.classList.add('open');
   });
 });
 
-const close = document.querySelector('#closeModal');
+// Fermeture de la lightbox
+const close = document.querySelector('#close-lightbox');
 close.addEventListener('click', () => {
-  const modal = document.querySelector('.test');
+  const modal = document.querySelector('.lightbox-background');
   modal.classList.remove('open');
+});
+
+// Fermeture de la lightbox avec la touche échap
+document.addEventListener('keydown', (event) => {
+  const modal = document.querySelector('.lightbox-background');
+  if (event.key === 'Escape') {
+    modal.classList.remove('open');
+  }
 }
 );
 
+// Affichage hello dans la lightbox si media est une image et world si media est une vidéo
+const lightbox = document.querySelector('.lightbox-media');
 
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    if (media.nodeName === 'IMG') {
+      lightbox.innerHTML = 'Hello';
+    } else if (media.nodeName === 'VIDEO') {
+      lightbox.innerHTML = 'World';
+    }
+  });
+});
+
+// Affichage de l'image dans la lightbox
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    if (media.nodeName === 'IMG') {
+      lightbox.innerHTML = media.outerHTML;
+    }
+    else if (media.nodeName === 'VIDEO') {
+      lightbox.innerHTML = media.outerHTML;
+    }
+  });
+});
+
+// Display none sur la lightbox-media quand on ferme la lightbox
+close.addEventListener('click', () => {
+  lightbox.innerHTML = '';
+});
