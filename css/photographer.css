@@ -456,10 +456,6 @@ form textarea {
   display: none;
 }
 
-.select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 
 /* Lightbox */
 .lightbox-background.open {

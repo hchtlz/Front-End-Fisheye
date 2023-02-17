@@ -306,6 +306,16 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 
 
+
+
+
+
+
+
+
+
+
+
 // ********* LIGHTBOX *********
 
 const media = document.querySelectorAll('.media');
@@ -353,6 +363,20 @@ media.forEach((media) => {
     lightboxMedia.innerHTML = media.outerHTML;
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ********* FUNCTION INIT *********
 function init() {
