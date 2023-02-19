@@ -10,9 +10,17 @@
   <body>
     <article class="lightbox">
       <div class="lightbox-background">
-        <div class="lightbox-media"></div>
-        <div class="lightbox-title"></div>
-        <img tabindex="0" src="assets/icons/close.svg" id="close-lightbox" alt="Fermer le formulaire" role="button">
+        <div class="lightbox-arrow-previous" id="previous-media">
+          <i class="fa-solid fa-angle-left"></i>
+        </div>
+        <div class="lightbox-center">
+          <div class="lightbox-media"></div>
+          <div class="lightbox-title">Ceci est un test</div>
+        </div>
+        <div class="lightbox-arrow-next" id="next-media">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <img class="lightbox-close-arrow" tabindex="0" src="assets/icons/close-lightbox.svg" id="close-lightbox" alt="Fermer le formulaire" role="button">
         <div class="caption"></div>
       </div>
     </article>

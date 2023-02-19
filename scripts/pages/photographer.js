@@ -356,13 +356,69 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Afficher le media dans la div lightbox-media
+// Ajouter la classe open à la div .lightbox-arrow-previous quand on ouvre la lightbox
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    const lightboxClose = document.querySelector('.lightbox-close-arrow');
+    const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous');
+    const lightboxArrowNext = document.querySelector('.lightbox-arrow-next');
+    const lightboxTitle = document.querySelector('.lightbox-title');
+    lightboxArrowPrevious.classList.add('open');
+    lightboxArrowNext.classList.add('open');
+    lightboxTitle.classList.add('open');
+    lightboxClose.classList.add('open');
+  });
+});
+
+// enlever la classe open à la div .lightbox-arrow-previous quand on ferme la lightbox
+modal.addEventListener('click', (event) => {
+  const lightboxClose = document.querySelector('.lightbox-close-arrow');
+  const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous');
+  const lightboxArrowNext = document.querySelector('.lightbox-arrow-next');
+  const lightboxTitle = document.querySelector('.lightbox-title');
+  if (event.target === modal) {
+    lightboxClose.classList.remove('open');
+    lightboxArrowPrevious.classList.remove('open');
+    lightboxArrowNext.classList.remove('open');
+    lightboxTitle.classList.remove('open');
+  }
+  else if (event.target === closeLightbox) {
+    lightboxClose.classList.remove('open');
+    lightboxArrowPrevious.classList.remove('open');
+    lightboxArrowNext.classList.remove('open');
+    lightboxTitle.classList.remove('open');
+  }
+});
+
+
+
+
+// Stocker media dans un tableau
+const mediaArray = Array.from(media);
+console.log(mediaArray);
+
+// Afficher le media selectionné dans la div lightbox-media
 media.forEach((media) => {
   media.addEventListener('click', () => {
     const lightboxMedia = document.querySelector('.lightbox-media');
     lightboxMedia.innerHTML = media.outerHTML;
   });
 });
+
+// Récuperer l'index du media selectionné
+media.forEach((media) => {
+  media.addEventListener('click', () => {
+    const mediaIndex = mediaArray.indexOf(media);
+    console.log(mediaIndex);
+  });
+});
+
+
+
+
+
+
+
 
 
 

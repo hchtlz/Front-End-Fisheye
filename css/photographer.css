@@ -419,7 +419,7 @@ form textarea {
   height: 12px;
   position: absolute;
   right: 36px;
-  top: 30px;
+  top: 28px;
   transform: rotate(45deg);
   transition: transform 0.3s ease-in-out;
   width: 12px;
@@ -460,7 +460,7 @@ form textarea {
 /* Lightbox */
 .lightbox-background.open {
   align-items: center;
-  background-color: #cacaca91;
+  background-color: #FFFFFFF0;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -470,6 +470,15 @@ form textarea {
   width: 100%;
   z-index: 100;
 }
+
+.lightbox-close-arrow {
+  display: none;
+}
+
+.lightbox-close-arrow.open {
+  display: block;
+}
+
 #close-lightbox{
   cursor: pointer;
   height: 20px;
@@ -480,12 +489,37 @@ form textarea {
   z-index: 100;
 }
 
+.lightbox-title{
+  display: none;
+}
+.lightbox-title.open{
+  color: #901C1C;
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+}
+
 .lightbox-media img,
 .lightbox-media video {
   border-radius: 5px;
   height: 600px;
   object-fit: cover;
-  object-position: 0 -84px;
   overflow-clip-margin: unset;
   width: 1050px;
+}
+.lightbox-arrow-previous,
+.lightbox-arrow-next {
+  display: none;
+}
+.lightbox-arrow-previous.open,
+.lightbox-arrow-next.open {
+  display: block;
+}
+
+.lightbox-arrow-previous i,
+.lightbox-arrow-next i {
+  color: #901C1C;
+  font-size: 40px;
+  margin: 0 30px;
+  transition: transform 0.3s ease-in-out;
 }
