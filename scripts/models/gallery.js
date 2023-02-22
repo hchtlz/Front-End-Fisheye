@@ -1,14 +1,14 @@
 export class Gallery {
-  constructor (data) {
-    this._medias = data;
-    this._title = data.title;
-  }
+    constructor (data) {
+        this._medias = data
+        this._title = data.title
+    }
 
-  get medias() {
-    return this._medias;
-  }
+    get medias() {
+        return this._medias
+    }
 
-  get title() {
-    return this._title;
-  }
+    get title() {
+        return this._title
+    }
 }
