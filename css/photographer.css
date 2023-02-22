@@ -378,6 +378,10 @@ form textarea {
 .media_tri select {
   display: none; 
 }
+.media_tri label {
+  font-size: 18px;
+  margin-right: 25px;
+}
 
 .label {
   font-size: 18px;
@@ -439,11 +443,12 @@ form textarea {
   background-color: #901C1C;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  left: 0;
+  left: 94px;
   position: absolute;
   right: 0;
   top: 100%;
   z-index: 99;
+  max-width: 90px;
   padding: 0 63px 0px 23px;
 }
 

@@ -8,6 +8,11 @@
 		<title>Fisheye - photographe </title>
 	</head>
 	<body>
+    <!-- LOADER -->
+    <div class="loader_container ">
+			<span class="loader"></span>
+		</div>
+    <!-- LIGHTBOX -->
 		<article class="lightbox">
 			<div class="lightbox-background">
 				<div class="lightbox-arrow-previous" id="previous-media">
@@ -24,12 +29,11 @@
 				<div class="caption"></div>
 			</div>
 		</article>
+    <!-- HEADER -->
 		<header>
 			<a href="index.html" class="nav-logo"><img src="assets/images/logo.png" class="logo" alt="logo du site internet Fisheye" /></a>
 		</header>
-		<div class="loader_container ">
-			<span class="loader"></span>
-		</div>
+    <!-- MAIN -->
 		<main id="main">
 			<div class="likes_info" tabindex="-1" aria-hidden="true">
 				<div class="likes"></div>
@@ -39,10 +43,8 @@
 		<article class="tag_section"></article>
 		<section>
 			<div class="filter_input">
-				<div class="label">
-					<label>Trier par</label>
-				</div>
 				<div class="media_tri">
+          <label>Trier par</label>
 					<select class="media_tri_input">
 						<option value="popularite">Popularité</option>
 						<option value="date">Date</option>
@@ -52,6 +54,7 @@
 			</div>
 			<div class="media_section"></div>
 		</section>
+    <!-- MODAL -->
 		<div id="contact_modal" tabindex="-1">
 			<div class="modal-background">
 				<div class="modal" role="dialog">
@@ -61,23 +64,27 @@
 					</header>
 					<form method="post" onsubmit="return validateForm(event)">
 						<div>
+              <!-- FIRST NAME -->
 							<label for='firstName'>Prénom</label>
-							<input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
+							<input name='firstName' id="firstName" type='text' minlength=2 aria-required="true" aria-labelledby="label-firstname">
 							<span id="firstNameErr"></span>
 						</div>
 						<div>
+              <!-- LAST NAME -->
 							<label for='lastName'>Nom</label>
-							<input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
+							<input name='lastName' id="lastName" type='text' minlength=2 aria-required="true" aria-labelledby="label-lastname">
 							<span id="lastNameErr"></span>
 						</div>
 						<div>
+              <!-- EMAIL -->
 							<label for='eMail'>E-mail</label>
-							<input name='eMail' id='email' type='email' aria-required="true">
+							<input name='eMail' id='email' type='email' aria-required="true" aria-labelledby="label-email">
 							<span id="emailErr"></span>
 						</div>
 						<div>
+              <!-- MESSAGE -->
 							<label for='message'>Votre message : </label>
-							<textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
+							<textarea name='message' id='message' maxlength=1000 aria-required="true" aria-labelledby="label-message"></textarea>
 							<span id="messageErr"></span>
 						</div>
 						<button type="submit" class="submit_button" id="submit_button">Envoyer</button>
