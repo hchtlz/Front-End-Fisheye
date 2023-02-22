@@ -1,94 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <article class="lightbox">
-      <div class="lightbox-background">
-        <div class="lightbox-arrow-previous" id="previous-media">
-          <i class="fa-solid fa-angle-left"></i>
-        </div>
-        <div class="lightbox-center">
-          <div class="lightbox-media"></div>
-          <div class="lightbox-title"></div>
-        </div>
-        <div class="lightbox-arrow-next" id="next-media">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-        <img class="lightbox-close-arrow" tabindex="0" src="assets/icons/close-lightbox.svg" id="close-lightbox" alt="Fermer le formulaire" role="button">
-        <div class="caption"></div>
-      </div>
-    </article>
-    <header>
-      <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo.png" class="logo" alt="logo du site internet Fisheye" />
-    </a>
-    </header>
-    <div class="loader_container ">
-      <span class="loader"></span>
-    </div> 
-    <main id="main">
-      <div class="likes_info" tabindex="-1" aria-hidden="true">
-        <div class="likes">
-        </div>
-        <div class="price"></div>
-      </div>
-    </main>
-    <article class="tag_section"></article>
-    <section>
-      <div class="filter_input">
-        <div class="label">
-          <label>Trier par</label>
-        </div>
-        <div class="media_tri">
-          <select class="media_tri_input">
-            <option value="popularite">Popularité</option>
-            <option value="date">Date</option>
-            <option value="titre">Titre</option>
-          </select>
-        </div>
-      </div> 
-      <div class="media_section"></div>
-    </section>
-    <div id="contact_modal" tabindex="-1">
-      <div class="modal-background">
-        <div class="modal" role="dialog">
-          <header>
-            <h2>Contactez-moi</h2>
-            <img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
-          </header>
-          <form method="post" onsubmit="return validateForm(event)">
-            <div>
-              <label for='firstName'>Prénom</label>
-              <input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
-              <span id="firstNameErr"></span>
-            </div>
-            <div>
-              <label for='lastName'>Nom</label>
-              <input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
-              <span id="lastNameErr"></span>
-            </div>
-            <div>
-              <label for='eMail'>E-mail</label>
-              <input name='eMail' id='email' type='email' aria-required="true">
-              <span id="emailErr"></span>
-            </div>
-            <div>
-              <label for='message'>Votre message : </label>
-              <textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
-              <span id="messageErr"></span>
-            </div>
-            <button type="submit" class="submit_button" id="submit_button">Envoyer</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <script src="https://kit.fontawesome.com/f33fbfe9ce.js" crossorigin="anonymous"></script>
-    <script src="dist/photographer.bundle.js"></script>
-  </body>
+	<head>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="assets/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+		<title>Fisheye - photographe </title>
+	</head>
+	<body>
+		<article class="lightbox">
+			<div class="lightbox-background">
+				<div class="lightbox-arrow-previous" id="previous-media">
+					<i class="fa-solid fa-angle-left"></i>
+				</div>
+				<div class="lightbox-center">
+					<div class="lightbox-media"></div>
+					<div class="lightbox-title"></div>
+				</div>
+				<div class="lightbox-arrow-next" id="next-media">
+					<i class="fa-solid fa-chevron-right"></i>
+				</div>
+				<img class="lightbox-close-arrow" tabindex="0" src="assets/icons/close-lightbox.svg" id="close-lightbox" alt="Fermer le formulaire" role="button">
+				<div class="caption"></div>
+			</div>
+		</article>
+		<header>
+			<a href="index.html" class="nav-logo"><img src="assets/images/logo.png" class="logo" alt="logo du site internet Fisheye" /></a>
+		</header>
+		<div class="loader_container ">
+			<span class="loader"></span>
+		</div>
+		<main id="main">
+			<div class="likes_info" tabindex="-1" aria-hidden="true">
+				<div class="likes"></div>
+				<div class="price"></div>
+			</div>
+		</main>
+		<article class="tag_section"></article>
+		<section>
+			<div class="filter_input">
+				<div class="label">
+					<label>Trier par</label>
+				</div>
+				<div class="media_tri">
+					<select class="media_tri_input">
+						<option value="popularite">Popularité</option>
+						<option value="date">Date</option>
+						<option value="titre">Titre</option>
+					</select>
+				</div>
+			</div>
+			<div class="media_section"></div>
+		</section>
+		<div id="contact_modal" tabindex="-1">
+			<div class="modal-background">
+				<div class="modal" role="dialog">
+					<header>
+						<h2>Contactez-moi</h2>
+						<img tabindex="0" src="assets/icons/close.svg" id="closeModal" alt="Fermer le formulaire" role="button">
+					</header>
+					<form method="post" onsubmit="return validateForm(event)">
+						<div>
+							<label for='firstName'>Prénom</label>
+							<input name='firstName' id="firstName" type='text' minlength=2 aria-required="true">
+							<span id="firstNameErr"></span>
+						</div>
+						<div>
+							<label for='lastName'>Nom</label>
+							<input name='lastName' id="lastName" type='text' minlength=2 aria-required="true">
+							<span id="lastNameErr"></span>
+						</div>
+						<div>
+							<label for='eMail'>E-mail</label>
+							<input name='eMail' id='email' type='email' aria-required="true">
+							<span id="emailErr"></span>
+						</div>
+						<div>
+							<label for='message'>Votre message : </label>
+							<textarea name='message' id='message' maxlength=1000 aria-required="true"></textarea>
+							<span id="messageErr"></span>
+						</div>
+						<button type="submit" class="submit_button" id="submit_button">Envoyer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="https://kit.fontawesome.com/f33fbfe9ce.js" crossorigin="anonymous"></script>
+		<script src="dist/photographer.bundle.js"></script>
+	</body>
 </html>
