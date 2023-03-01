@@ -14,8 +14,10 @@ FishEye est un site web qui permet aux photographes indépendants de présenter 
 Ils ont récemment levé des fonds et aimeraient mettre à jour leur site web. 
 
 #### Sources
-[Maquette](https://www.figma.com/file/Q3yNeD7WTK9QHDldg9vaRl/UI-Design-FishEye-FR?node-id=0%3A1)  
+[Maquette](https://www.figma.com/file/Q3yNeD7WTK9QHDldg9vaRl/UI-Design-FishEye-FR?node-id=0%3A1) 
+
 [JSON exemple](https://github.com/OpenClassrooms-Student-Center/Front-End-Fisheye/blob/main/data/photographers.json)
+
 [Notes de reunion](https://course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/Notes+de+reunion.pdf)
 
 
