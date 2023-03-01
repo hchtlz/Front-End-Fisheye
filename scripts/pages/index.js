@@ -42,6 +42,9 @@ function getUserCardDOM(photographerObject) {
     return (tagA)
 }
 
+/*
+* Afficher les cartes des photographes
+*/
 function displayData(photographers) {
     const photographersSection = document.querySelector('.photographer_section')
     photographers.forEach((photographer) => {
@@ -50,6 +53,9 @@ function displayData(photographers) {
     })
 }
 
+/*
+* Initialisation de la page
+*/
 function init() {
     // Récupère les datas des photographes
     const photographers = getPhotographers()

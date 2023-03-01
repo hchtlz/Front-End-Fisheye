@@ -6,13 +6,11 @@ import { closeModal } from '../utils/contactForm.js'
 import { validateForm } from '../utils/contactForm.js'
 import { MediaFactory } from '../factories/media.js'
 
-
-// ********* LOADER *********
+// ***************** LOADER *****************
 
 window.onload = () => { loader() }
   
-
-// ********* HEADER *********
+// ***************** HEADER *****************
 /*
 * Création du header du photographe
 */
@@ -22,7 +20,7 @@ function makeHeader(photographerObject) {
     const photographHeader = document.createElement('section')
     photographHeader.classList.add('photograph-header')
 
-    // Bloc 'identité'
+    // Bloc 'identité' du photographe
     const photographerIdentity = document.createElement('div')
     photographHeader.appendChild(photographerIdentity)
     photographerIdentity.classList.add('photographerIdentity')
@@ -67,7 +65,7 @@ function makeHeader(photographerObject) {
     photographerPortrait.appendChild(media.renderMedia(photographerObject))
     photographerPortrait.querySelector('img').setAttribute('alt', 'Portrait de ' + photographerObject.name)
 
-    // ********* LIKES *********
+    // ***************** LIKES *****************
 
     // Alimentation du cartouche : Tarif
     const tarif = document.querySelector('.price')
@@ -92,7 +90,7 @@ function makeHeader(photographerObject) {
     return photographHeader
 }
 
-// ********* AFFICHAGE PHOTOGRAPHE *********
+// ***************** AFFICHAGE PHOTOGRAPHE *****************
 /*
 * Récupère les données du photographe sélectionné
 */
@@ -111,7 +109,7 @@ function displayPhotographer(data) {
     main.appendChild(userCardDOM)
 }
 
-// ********* AFFICHAGE MEDIAS *********
+// ***************** AFFICHAGE MEDIAS *****************
 /* 
 * Récupérer l'id du photographe 
 */
@@ -152,8 +150,6 @@ object.addEventListener('change', sortPhotographerMedia)
 /*
 * Afficher les médias du photographe
 */ 
-
-// Stocker media dans un tableau
 let media = document.querySelectorAll('.media:not(.portrait)')
 let mediaArray = Array.from(media)
 
@@ -216,41 +212,37 @@ function displayPhotographerMedia(photographerMedia) {
     media = document.querySelectorAll('.media:not(.portrait)')
     mediaArray = Array.from(media)
 }
-
 const photographerMedia = getPhotographerMedia()
 displayPhotographerMedia(photographerMedia)
 
 
-// ********* TRI *********
+// ***************** TRI *****************
+// Recherchez tous les éléments avec la classe "media_tri" 
 var x, i, j, l, ll, selElmnt, a, b, c
-
-/* Look for any elements with the class "media_tri": */
 x = document.getElementsByClassName('media_tri')
 l = x.length
 for (i = 0; i < l; i++) {
     selElmnt = x[i].getElementsByTagName('select')[0]
     ll = selElmnt.length
   
-    /* For each element, create a new DIV that will act as the selected item: */
+    // Pour chaque élément, créez un nouveau DIV qui agira comme l'élément sélectionné
     a = document.createElement('DIV')
     a.setAttribute('class', 'select-selected')
     a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML
     x[i].appendChild(a)
   
-    /* For each element, create a new DIV that will contain the option list: */
+    // Pour chaque élément, créez un nouveau DIV qui contiendra la liste d'options :
     b = document.createElement('DIV')
     b.setAttribute('class', 'select-items select-hide')
     for (j = 0; j < ll; j++) {
     
-        /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
+        // Pour chaque option de l'élément de sélection d'origine, créez un nouveau DIV qui agira comme un élément d'option
         c = document.createElement('DIV')
         if (j==0) {c.setAttribute('class', 'same-as-selected')}
         c.innerHTML = selElmnt.options[j].innerHTML
         c.addEventListener('click', function() {
       
-            /* When an item is clicked, update the original select box,
-        and the selected item: */
+            // Lorsqu'un élément est cliqué, mettre à jour la select box d'origine et l'élément sélectionné
             var y, i, k, s, h, sl, yl
             s = this.parentNode.parentNode.getElementsByTagName('select')[0]
             sl = s.length
@@ -276,8 +268,7 @@ for (i = 0; i < l; i++) {
     x[i].appendChild(b)
     a.addEventListener('click', function(e) {
     
-        /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
+        // Lorsque la select box est cliquée, fermez toutes les autres select boxes, et ouvrir/fermer la select box actuelle
         e.stopPropagation()
         closeAllSelect(this)
         this.nextSibling.classList.toggle('select-hide')
@@ -285,9 +276,10 @@ for (i = 0; i < l; i++) {
     })
 }
 
+/*
+* Une fonction qui fermera toutes les select boxes du document, sauf la select box actuelle
+*/ 
 function closeAllSelect(elmnt) {
-    /* A function that will close all select boxes in the document,
-  except the current select box: */
     var x, y, i, xl, yl, arrNo = []
     x = document.getElementsByClassName('select-items')
     y = document.getElementsByClassName('select-selected')
@@ -307,28 +299,13 @@ function closeAllSelect(elmnt) {
     }
 }
 
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
+// Si l'utilisateur clique n'importe où en dehors de la zone de sélection fermer toutes les select boxes
 document.addEventListener('click', closeAllSelect)
 
-
-
-
-
-
-
-
-
-
-
-
-// ********* LIGHTBOX *********
+// ***************** LIGHTBOX *****************
 
 // Ouverture de la lightbox
-// media.forEach((media) => {
-
 document.addEventListener('click', (e) => {
-    console.log(e.target)
     if (e.target.classList.contains('media')) {
         const modal = document.querySelector('.lightbox-background')
         const name = e.target.getAttribute('data-name')
@@ -337,9 +314,8 @@ document.addEventListener('click', (e) => {
         modal.classList.add('open')
     }
 })
-// })
 
-// Fermeture de la lightbox et vider la div lightbox-media
+// Fermeture de la lightbox 
 const modal = document.querySelector('.lightbox-background')
 document.addEventListener('click', (event) => {
     const lightboxMedia = document.querySelector('.lightbox-media')
@@ -366,8 +342,7 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-// Ajouter la classe open à la div .lightbox-arrow-previous quand on ouvre la lightbox
-// media.forEach((media) => {
+// Ajouter la classe open
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('media')) {
         const lightboxClose = document.querySelector('.lightbox-close-arrow')
@@ -380,9 +355,8 @@ document.addEventListener('click', (e) => {
         lightboxClose.classList.add('open')
     }
 })
-// })
 
-// enlever la classe open à la div .lightbox-arrow-previous quand on ferme la lightbox
+// Enlever la classe open
 modal.addEventListener('click', (e) => {
     const lightboxClose = document.querySelector('.lightbox-close-arrow')
     const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
@@ -402,7 +376,7 @@ modal.addEventListener('click', (e) => {
     }
 })
 
-// si la classe open est présente, l'enlever en cliquant sur echap
+// Fermeture de la lightbox avec touche échap
 document.addEventListener('keydown', (event) => {
     const lightboxClose = document.querySelector('.lightbox-close-arrow')
     const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
@@ -416,24 +390,20 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-
-
-// Afficher le media selectionné dans la div lightbox-media
+// Afficher le media selectionné
 let mediaIndex = 0
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('media')) {
         const lightboxMedia = document.querySelector('.lightbox-media')
         lightboxMedia.innerHTML = event.target.outerHTML
         mediaIndex = mediaArray.indexOf(event.target)
-        console.log(mediaIndex)
     }
 })
 
-const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
-const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
 // Afficher le media précédent
+const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
+
 lightboxArrowPrevious.addEventListener('click', () => {
-    console.log(media)
     if (mediaIndex > 0) {
         mediaIndex--
         const lightboxMedia = document.querySelector('.lightbox-media')
@@ -444,6 +414,8 @@ lightboxArrowPrevious.addEventListener('click', () => {
 })
 
 // Afficher le media suivant
+const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
+
 lightboxArrowNext.addEventListener('click', () => {
     if (mediaIndex < media.length - 1) {
         mediaIndex++
@@ -475,24 +447,10 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ********* FUNCTION INIT *********
+// ***************** FUNCTION INIT *****************
+/*
+* Fonction qui initialise le script
+*/ 
 function init() {
 
     //Extraction de l'ID du photographe à traiter.
