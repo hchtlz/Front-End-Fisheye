@@ -152,6 +152,11 @@ object.addEventListener('change', sortPhotographerMedia)
 /*
 * Afficher les médias du photographe
 */ 
+
+// Stocker media dans un tableau
+let media = document.querySelectorAll('.media:not(.portrait)')
+let mediaArray = Array.from(media)
+
 function displayPhotographerMedia(photographerMedia) {
     const photographerMediaSection = document.querySelector('.media_section')
     photographerMediaSection.innerHTML = ''
@@ -208,6 +213,8 @@ function displayPhotographerMedia(photographerMedia) {
             mediaLikesButton.classList.add('liked')
         })
     })
+    media = document.querySelectorAll('.media:not(.portrait)')
+    mediaArray = Array.from(media)
 }
 
 const photographerMedia = getPhotographerMedia()
@@ -317,21 +324,20 @@ document.addEventListener('click', closeAllSelect)
 
 // ********* LIGHTBOX *********
 
-const media = document.querySelectorAll('.media')
-
 // Ouverture de la lightbox
-media.forEach((media) => {
-    document.addEventListener('click', (e) => {
-        if (e.target === media) {
-            const modal = document.querySelector('.lightbox-background')
-            const name = media.getAttribute('data-name')
-            const lightboxTitle = document.querySelector('.lightbox-title')
-            lightboxTitle.innerHTML = name
-            modal.classList.add('open')
-        }
-    })
-})
+// media.forEach((media) => {
 
+document.addEventListener('click', (e) => {
+    console.log(e.target)
+    if (e.target.classList.contains('media')) {
+        const modal = document.querySelector('.lightbox-background')
+        const name = e.target.getAttribute('data-name')
+        const lightboxTitle = document.querySelector('.lightbox-title')
+        lightboxTitle.innerHTML = name
+        modal.classList.add('open')
+    }
+})
+// })
 
 // Fermeture de la lightbox et vider la div lightbox-media
 const modal = document.querySelector('.lightbox-background')
@@ -361,8 +367,9 @@ document.addEventListener('keydown', (event) => {
 })
 
 // Ajouter la classe open à la div .lightbox-arrow-previous quand on ouvre la lightbox
-media.forEach((media) => {
-    media.addEventListener('click', () => {
+// media.forEach((media) => {
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('media')) {
         const lightboxClose = document.querySelector('.lightbox-close-arrow')
         const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
         const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
@@ -371,8 +378,9 @@ media.forEach((media) => {
         lightboxArrowNext.classList.add('open')
         lightboxTitle.classList.add('open')
         lightboxClose.classList.add('open')
-    })
+    }
 })
+// })
 
 // enlever la classe open à la div .lightbox-arrow-previous quand on ferme la lightbox
 modal.addEventListener('click', (e) => {
@@ -408,25 +416,24 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-// Stocker media dans un tableau
-const mediaArray = Array.from(media)
+
 
 // Afficher le media selectionné dans la div lightbox-media
 let mediaIndex = 0
-media.forEach((media) => {
-    document.addEventListener('click', (event) => {
-        if (event.target === media) {
-            const lightboxMedia = document.querySelector('.lightbox-media')
-            lightboxMedia.innerHTML = media.outerHTML
-            mediaIndex = mediaArray.indexOf(media)
-        }
-    })
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('media')) {
+        const lightboxMedia = document.querySelector('.lightbox-media')
+        lightboxMedia.innerHTML = event.target.outerHTML
+        mediaIndex = mediaArray.indexOf(event.target)
+        console.log(mediaIndex)
+    }
 })
 
 const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
 const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
 // Afficher le media précédent
 lightboxArrowPrevious.addEventListener('click', () => {
+    console.log(media)
     if (mediaIndex > 0) {
         mediaIndex--
         const lightboxMedia = document.querySelector('.lightbox-media')

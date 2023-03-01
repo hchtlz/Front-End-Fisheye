@@ -5,8 +5,10 @@ export class Image {
         this._title = data.title
         if (Object.prototype.hasOwnProperty.call(data, 'portrait')) {
             this._src = 'assets/portraits/' + data.portrait
+            this._isPortrait = true
         } else if (Object.prototype.hasOwnProperty.call(data, 'image')) {
             this._src = 'assets/media/' + data.image
+            this._isPortrait = false
         }
         this._likes = data.likes
         this._date = data.date
@@ -39,5 +41,9 @@ export class Image {
 
     get price() {
         return this._price
+    }
+
+    get isPortrait() {
+        return this._isPortrait
     }
 }

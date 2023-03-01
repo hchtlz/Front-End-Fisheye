@@ -8,6 +8,9 @@ export class ImageFactory {
         element.setAttribute('alt', image.title)
         element.setAttribute('data-name', image.title)
         element.className = 'media'
+        if (image.isPortrait) {
+            element.className += ' portrait'
+        }
 
         return element
     }
