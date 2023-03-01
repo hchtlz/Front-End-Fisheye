@@ -521,8 +521,8 @@ form textarea {
   display: block;
 }
 
-.lightbox-arrow-previous i,
-.lightbox-arrow-next i {
+.lightbox-arrow-previous em,
+.lightbox-arrow-next em {
   color: #901C1C;
   font-size: 40px;
   margin: 0 30px;

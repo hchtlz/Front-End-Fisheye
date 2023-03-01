@@ -305,9 +305,20 @@ document.addEventListener('click', closeAllSelect)
 
 // ***************** LIGHTBOX *****************
 
+
+
+
+
+
+
+
+
+
+// A VERIFIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+
 // Ouverture de la lightbox
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('media')) {
+document.addEventListener('click', (e) => { 
+  if (e.target.classList.contains('media') && !e.target.classList.contains('portrait')) {
     const modal = document.querySelector('.lightbox-background')
     const name = e.target.getAttribute('data-name')
     const lightboxTitle = document.querySelector('.lightbox-title')
@@ -315,6 +326,28 @@ document.addEventListener('click', (e) => {
     modal.classList.add('open')
   }
 })
+
+// Au clic de media portrait, rien ne se passe
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('portrait')) {
+    e.preventDefault()
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Fermeture de la lightbox 
 const modal = document.querySelector('.lightbox-background')

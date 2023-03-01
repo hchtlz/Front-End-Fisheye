@@ -15,17 +15,17 @@
     <!-- LIGHTBOX -->
 		<article class="lightbox">
 			<div class="lightbox-background">
-				<div class="lightbox-arrow-previous" id="previous-media">
-					<i class="fa-solid fa-angle-left"></i>
+				<div class="lightbox-arrow-previous" id="previous-media" aria-label="Previous image" >
+					<em class="fa-solid fa-angle-left"></em>
 				</div>
 				<div class="lightbox-center">
 					<div class="lightbox-media"></div>
 					<div class="lightbox-title"></div>
 				</div>
-				<div class="lightbox-arrow-next" id="next-media">
-					<i class="fa-solid fa-chevron-right"></i>
+				<div class="lightbox-arrow-next" id="next-media" aria-label="Next image">
+					<em class="fa-solid fa-chevron-right"></em>
 				</div>
-				<img class="lightbox-close-arrow" tabindex="0" src="assets/icons/close-lightbox.svg" id="close-lightbox" alt="Fermer le formulaire" role="button">
+				<img class="lightbox-close-arrow" tabindex="0" src="assets/icons/close-lightbox.svg" id="close-lightbox" alt="Close dialog" role="button">
 				<div class="caption"></div>
 			</div>
 		</article>
@@ -44,8 +44,8 @@
 		<section>
 			<div class="filter_input">
 				<div class="media_tri">
-          <label>Trier par</label>
-					<select class="media_tri_input">
+          <label for="filter-select">Trier par</label>
+					<select class="media_tri_input" name="filters">
 						<option value="popularite">Popularité</option>
 						<option value="date">Date</option>
 						<option value="titre">Titre</option>
@@ -77,13 +77,13 @@
 						</div>
 						<div>
               <!-- EMAIL -->
-							<label for='eMail'>E-mail</label>
+							<label for='eMail'>Email</label>
 							<input name='eMail' id='email' type='email' aria-required="true" aria-labelledby="label-email">
 							<span id="emailErr"></span>
 						</div>
 						<div>
               <!-- MESSAGE -->
-							<label for='message'>Votre message : </label>
+							<label for='message'>Votre message :</label>
 							<textarea name='message' id='message' maxlength=1000 aria-required="true" aria-labelledby="label-message"></textarea>
 							<span id="messageErr"></span>
 						</div>
