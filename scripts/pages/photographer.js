@@ -304,18 +304,6 @@ function closeAllSelect(elmnt) {
 document.addEventListener('click', closeAllSelect)
 
 // ***************** LIGHTBOX *****************
-
-
-
-
-
-
-
-
-
-
-// A VERIFIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-
 // Ouverture de la lightbox
 document.addEventListener('click', (e) => { 
   if (e.target.classList.contains('media') && !e.target.classList.contains('portrait')) {
@@ -326,28 +314,6 @@ document.addEventListener('click', (e) => {
     modal.classList.add('open')
   }
 })
-
-// Au clic de media portrait, rien ne se passe
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('portrait')) {
-    e.preventDefault()
-  }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Fermeture de la lightbox 
 const modal = document.querySelector('.lightbox-background')
@@ -378,7 +344,7 @@ document.addEventListener('keydown', (event) => {
 
 // Ajouter la classe open
 document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('media')) {
+  if (e.target.classList.contains('media') && !e.target.classList.contains('portrait'))  {
     const lightboxClose = document.querySelector('.lightbox-close-arrow')
     const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
     const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
@@ -427,7 +393,7 @@ document.addEventListener('keydown', (event) => {
 // Afficher le media selectionné
 let mediaIndex = 0
 document.addEventListener('click', (event) => {
-  if (event.target.classList.contains('media')) {
+  if (event.target.classList.contains('media') && !event.target.classList.contains('portrait')) {
     const lightboxMedia = document.querySelector('.lightbox-media')
     lightboxMedia.innerHTML = event.target.outerHTML
     mediaIndex = mediaArray.indexOf(event.target)
