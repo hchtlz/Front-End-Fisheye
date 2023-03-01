@@ -191,38 +191,37 @@ form textarea {
 }
 
 .loader {
-  animation: rotation 1.5s linear infinite;
-  border-color: #901C1C #901C1C transparent transparent;
-  border-radius: 50%;
-  border: 8px solid;
-  box-sizing: border-box;
-  display: inline-block;
+  width: 100px;
   height: 100px;
-  left: 50%;
+  border-radius: 50%;
+  display: inline-block;
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
+  border: 8px solid;
+  border-color: #901C1C #901C1C transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1.5s linear infinite;
 }
 
 .loader::after,
 .loader::before {
-  animation: rotationBack 0.5s linear infinite;
-  border-color: transparent transparent #DB8876 #DB8876;
-  border-radius: 50%;
-  border: 8px solid;
-  bottom: 0;
-  box-sizing: border-box;
-  box-sizing: border-box;
   content: '';
-  height: 80px;
-  left: 0;
-  margin: auto;
+  box-sizing: border-box;
   position: absolute;
+  left: 0;
   right: 0;
   top: 0;
-  transform-origin: center center;
+  bottom: 0;
+  margin: auto;
+  border: 8px solid;
+  border-color: transparent transparent #DB8876 #DB8876;
   width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
 }
 
 .loader::before {
@@ -529,7 +528,7 @@ form textarea {
   transition: transform 0.3s ease-in-out;
 }
 
-@media (max-width: 1024px) { 
+@media screen and (max-width: 1024px) { 
 
   #body {
     margin: 0 50px;
@@ -551,7 +550,7 @@ form textarea {
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
   #body {
     margin: 0 30px;
