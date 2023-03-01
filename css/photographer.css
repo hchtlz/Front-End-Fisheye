@@ -13,15 +13,16 @@
 .photograph-header {
   align-items: center;
   background-color: #FAFAFA;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 300px;
-  justify-content: space-around;
+  padding: 0 50px;
 }
 
 .photographerPortrait {
-  text-align: center;
-  width: 33%;
+  margin: 0 auto;
+  width: 100%;
+  text-align: right;
 }
 
 .photographerPortrait img {
@@ -52,6 +53,9 @@
   font-size: 18px;
   font-weight: 400;
   margin: 20px 0 0 0;
+}
+.contact_button {
+  margin: 0 auto;
 }
 
 .contact_button, 
@@ -187,52 +191,51 @@ form textarea {
 }
 
 .loader {
-  width: 100px;
-  height: 100px;
+  animation: rotation 1.5s linear infinite;
+  border-color: #901C1C #901C1C transparent transparent;
   border-radius: 50%;
+  border: 8px solid;
+  box-sizing: border-box;
   display: inline-block;
+  height: 100px;
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  border: 8px solid;
-  border-color: #901C1C #901C1C transparent transparent;
-  box-sizing: border-box;
-  animation: rotation 1.5s linear infinite;
+  width: 100px;
 }
 
 .loader::after,
 .loader::before {
-  content: '';
+  animation: rotationBack 0.5s linear infinite;
+  border-color: transparent transparent #DB8876 #DB8876;
+  border-radius: 50%;
+  border: 8px solid;
+  bottom: 0;
   box-sizing: border-box;
-  position: absolute;
+  box-sizing: border-box;
+  content: '';
+  height: 80px;
   left: 0;
+  margin: auto;
+  position: absolute;
   right: 0;
   top: 0;
-  bottom: 0;
-  margin: auto;
-  border: 8px solid;
-  border-color: transparent transparent #DB8876 #DB8876;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  animation: rotationBack 0.5s linear infinite;
   transform-origin: center center;
+  width: 80px;
 }
 
 .loader::before {
-  width: 60px;
-  height: 60px;
-  border-color: #901C1C #901C1C transparent transparent;
   animation: rotation 2s linear infinite;
+  border-color: #901C1C #901C1C transparent transparent;
+  height: 60px;
+  width: 60px;
 }
 
 @keyframes rotation {
   0% {
       transform: rotate(0deg);
   }
-
   100% {
       transform: rotate(360deg);
   }
@@ -242,7 +245,6 @@ form textarea {
   0% {
       transform: rotate(0deg);
   }
-
   100% {
       transform: rotate(-360deg);
   }
@@ -282,12 +284,10 @@ form textarea {
 
 .media_section {
   display: grid;
+  grid-column-gap: 20px;
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 100px;
 }
-
-@media (max-width: 1024px) { .media_section {  grid-template-columns: repeat(2, 1fr);  }}
-@media (max-width: 768px) { .media_section {  grid-template-columns: repeat(1, 1fr);  }}
 
 .media_tri {
   font-size: 18px;
@@ -527,4 +527,51 @@ form textarea {
   font-size: 40px;
   margin: 0 30px;
   transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 1024px) { 
+
+  #body {
+    margin: 0 50px;
+  }
+
+  #main {
+    margin: 0;
+  }
+
+  .media_section {  
+    grid-template-columns: repeat(2, 1fr);  
+  }
+  .filter_input {
+    margin: 0;
+  }
+
+  .photographerName {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  #body {
+    margin: 0 30px;
+  }
+
+  .media_section {  
+    grid-template-columns: repeat(1, 1fr);  
+  }
+
+  .photographer-header{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding-bottom: 50px;
+  }
+  .contact_button {
+    grid-area: 2 / 1 / 2 / 2;
+    margin: 0;
+  }
+
+  .photographerName {
+    font-size: 24px;
+  }
 }
