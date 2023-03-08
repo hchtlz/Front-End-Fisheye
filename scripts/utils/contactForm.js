@@ -20,6 +20,11 @@ export function validateForm(event) {
   const email = document.getElementById('email').value
   const message = document.getElementById('message').value
 
+  console.log('firstName: ', firstName)
+  console.log('lastName: ', lastName)
+  console.log('email: ', email)
+  console.log('message: ', message)
+
   const firstNameError = document.getElementById('firstNameErr')
   const lastNameError = document.getElementById('lastNameErr')
   const emailError = document.getElementById('emailErr')
