@@ -194,21 +194,18 @@ function displayPhotographerMedia(photographerMedia) {
 
     // Ajout des likes sous le média et incrémentation des likes dans la cartouche du photographe
     mediaLikesButton.onclick = () => {
-      media.likes++
+      const isLiked = mediaLikesButton.classList.contains('liked')
+      if (isLiked) {
+        media.likes--
+      } else {
+        media.likes++
+      }
       mediaLikesNumber.innerHTML = media.likes
       const likes = document.querySelector('.likes')
-      likes.innerHTML = parseInt(likes.innerHTML) + 1 + ' <i class="fas fa-heart"></i>'
+      const counter = isLiked ? (parseInt(likes.innerHTML) - 1) : (parseInt(likes.innerHTML) + 1)
+      likes.innerHTML = counter + ' <i class="fas fa-heart"></i>'
+      mediaLikesButton.classList.toggle('liked')
     }
-
-    // Pouvoir liker les médias une seule fois
-    mediaLikesButton.addEventListener('click', () => {
-      mediaLikesButton.disabled = true
-    })
-
-    // Focus sur le coeur quand le media est liké et l'enlever quand on clique sur le bouton like
-    mediaLikesButton.addEventListener('click', () => {
-      mediaLikesButton.classList.add('liked')
-    })
   })
   media = document.querySelectorAll('.media:not(.portrait)')
   mediaArray = Array.from(media)
@@ -300,152 +297,109 @@ function closeAllSelect(elmnt) {
   }
 }
 
-// Si l'utilisateur clique n'importe où en dehors de la zone de sélection fermer toutes les select boxes
-document.addEventListener('click', closeAllSelect)
-
 // ***************** LIGHTBOX *****************
+
+const modal = document.querySelector('.lightbox-background')
+const lightboxMedia = document.querySelector('.lightbox-media')
+const closeLightbox = document.querySelector('#close-lightbox')
+const lightboxClose = document.querySelector('.lightbox-close-arrow')
+const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
+const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
+const lightboxTitle = document.querySelector('.lightbox-title')
+let mediaIndex = 0
+
 // Ouverture de la lightbox
 document.addEventListener('click', (e) => { 
-  if (e.target.classList.contains('media') && !e.target.classList.contains('portrait')) {
-    const modal = document.querySelector('.lightbox-background')
-    const name = e.target.getAttribute('data-name')
-    const lightboxTitle = document.querySelector('.lightbox-title')
-    lightboxTitle.innerHTML = name
-    modal.classList.add('open')
-  }
-})
+  
+  // Si l'utilisateur clique n'importe où en dehors de la zone de sélection fermer toutes les select boxes
+  closeAllSelect()
 
-// Fermeture de la lightbox 
-const modal = document.querySelector('.lightbox-background')
-document.addEventListener('click', (event) => {
-  const lightboxMedia = document.querySelector('.lightbox-media')
-  if (event.target === modal) {
+  // Ouverture de la lightbox 
+  if (e.target.classList.contains('media') && !e.target.classList.contains('portrait')) {
+    const name = e.target.getAttribute('data-name')
+    lightboxTitle.innerHTML = name
+
+    // Ajouter la classe open à la lightbox
+    modal.classList.add('open')
+    lightboxArrowPrevious.classList.add('open')
+    lightboxArrowNext.classList.add('open')
+    lightboxTitle.classList.add('open')
+    lightboxClose.classList.add('open')
+
+    // Afficher le media selectionné
+    lightboxMedia.innerHTML = e.target.outerHTML
+    mediaIndex = mediaArray.indexOf(e.target)
+  }
+  
+  // Fermeture de la lightbox 
+  if (e.target === modal) {
     modal.classList.remove('open')
     lightboxMedia.innerHTML = ''
+  }
+
+  if (e.target === modal || e.target === closeLightbox) {
+    lightboxClose.classList.remove('open')
+    lightboxArrowPrevious.classList.remove('open')
+    lightboxArrowNext.classList.remove('open')
+    lightboxTitle.classList.remove('open')
   }
 })
 
 // Fermeture de la lightbox avec la croix
-const closeLightbox = document.querySelector('#close-lightbox')
 closeLightbox.addEventListener('click', () => {
-  const lightboxMedia = document.querySelector('.lightbox-media')
   modal.classList.remove('open')
   lightboxMedia.innerHTML = ''
 })
 
 // Fermeture de la lightbox avec la touche échap
 document.addEventListener('keydown', (event) => {
-  const lightboxMedia = document.querySelector('.lightbox-media')
   if (event.key === 'Escape') {
     modal.classList.remove('open')
     lightboxMedia.innerHTML = ''
-  }
-})
 
-// Ajouter la classe open
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('media') && !e.target.classList.contains('portrait'))  {
-    const lightboxClose = document.querySelector('.lightbox-close-arrow')
-    const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
-    const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
-    const lightboxTitle = document.querySelector('.lightbox-title')
-    lightboxArrowPrevious.classList.add('open')
-    lightboxArrowNext.classList.add('open')
-    lightboxTitle.classList.add('open')
-    lightboxClose.classList.add('open')
-  }
-})
-
-// Enlever la classe open
-modal.addEventListener('click', (e) => {
-  const lightboxClose = document.querySelector('.lightbox-close-arrow')
-  const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
-  const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
-  const lightboxTitle = document.querySelector('.lightbox-title')
-  if (e.target === modal) {
+    // Fermeture de la lightbox avec touche échap
     lightboxClose.classList.remove('open')
     lightboxArrowPrevious.classList.remove('open')
     lightboxArrowNext.classList.remove('open')
     lightboxTitle.classList.remove('open')
-  }
-  else if (e.target === closeLightbox) {
-    lightboxClose.classList.remove('open')
-    lightboxArrowPrevious.classList.remove('open')
-    lightboxArrowNext.classList.remove('open')
-    lightboxTitle.classList.remove('open')
-  }
-})
-
-// Fermeture de la lightbox avec touche échap
-document.addEventListener('keydown', (event) => {
-  const lightboxClose = document.querySelector('.lightbox-close-arrow')
-  const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
-  const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
-  const lightboxTitle = document.querySelector('.lightbox-title')
-  if (event.key === 'Escape') {
-    lightboxClose.classList.remove('open')
-    lightboxArrowPrevious.classList.remove('open')
-    lightboxArrowNext.classList.remove('open')
-    lightboxTitle.classList.remove('open')
-  }
-})
-
-// Afficher le media selectionné
-let mediaIndex = 0
-document.addEventListener('click', (event) => {
-  if (event.target.classList.contains('media') && !event.target.classList.contains('portrait')) {
-    const lightboxMedia = document.querySelector('.lightbox-media')
-    lightboxMedia.innerHTML = event.target.outerHTML
-    mediaIndex = mediaArray.indexOf(event.target)
   }
 })
 
 // Afficher le media précédent
-const lightboxArrowPrevious = document.querySelector('.lightbox-arrow-previous')
-
 lightboxArrowPrevious.addEventListener('click', () => {
   if (mediaIndex > 0) {
     mediaIndex--
-    const lightboxMedia = document.querySelector('.lightbox-media')
-    lightboxMedia.innerHTML = media[mediaIndex].outerHTML
-    const lightboxTitle = document.querySelector('.lightbox-title')
-    lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
+    displayMedia(mediaIndex)
   }
 })
 
 // Afficher le media suivant
-const lightboxArrowNext = document.querySelector('.lightbox-arrow-next')
-
 lightboxArrowNext.addEventListener('click', () => {
   if (mediaIndex < media.length - 1) {
     mediaIndex++
-    const lightboxMedia = document.querySelector('.lightbox-media')
-    lightboxMedia.innerHTML = media[mediaIndex].outerHTML
-    const lightboxTitle = document.querySelector('.lightbox-title')
-    lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
+    displayMedia(mediaIndex)
   }
 })
 
 // Navigation avec les touches fléchées
 document.addEventListener('keydown', (event) => {
-  const lightboxMedia = document.querySelector('.lightbox-media')
   if (event.key === 'ArrowLeft') {
     if (mediaIndex > 0) {
       mediaIndex--
-      lightboxMedia.innerHTML = media[mediaIndex].outerHTML
-      const lightboxTitle = document.querySelector('.lightbox-title')
-      lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
+      displayMedia(mediaIndex)
     }
   }
   else if (event.key === 'ArrowRight') {
     if (mediaIndex < media.length - 1) {
       mediaIndex++
-      lightboxMedia.innerHTML = media[mediaIndex].outerHTML
-      const lightboxTitle = document.querySelector('.lightbox-title')
-      lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
+      displayMedia(mediaIndex)
     }
   }
-})
+}) 
+function displayMedia(mediaIndex) {
+  lightboxMedia.innerHTML = media[mediaIndex].outerHTML
+  lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
+}
 
 // ***************** FUNCTION INIT *****************
 /*
@@ -469,3 +423,4 @@ function init() {
 }
 
 init()
+
