@@ -163,6 +163,7 @@ function displayPhotographerMedia(photographerMedia) {
     const mediaDiv = document.createElement('div')
     mediaDiv.classList.add('media_card')
     photographerMediaSection.appendChild(mediaDiv)
+    mediaDiv.setAttribute('aria-label', 'Média de ' + getPhotographer(getPhotographerId()).name)
 
     // Rendu des médias
     const mediaFactory = new MediaFactory()
@@ -191,6 +192,7 @@ function displayPhotographerMedia(photographerMedia) {
     mediaLikesButton.classList.add('media_card-likes-button')
     mediaLikes.appendChild(mediaLikesButton)
     mediaLikesButton.innerHTML = '<i class="fas fa-heart"></i>'
+    mediaLikesButton.setAttribute('aria-label', 'Ajouter un like')
 
     // Ajout des likes sous le média et incrémentation des likes dans la cartouche du photographe
     mediaLikesButton.onclick = () => {
@@ -210,9 +212,9 @@ function displayPhotographerMedia(photographerMedia) {
   media = document.querySelectorAll('.media:not(.portrait)')
   mediaArray = Array.from(media)
 }
+
 const photographerMedia = getPhotographerMedia()
 displayPhotographerMedia(photographerMedia)
-
 
 // ***************** TRI *****************
 // Recherchez tous les éléments avec la classe "media_tri" 
@@ -396,6 +398,7 @@ document.addEventListener('keydown', (event) => {
     }
   }
 }) 
+
 function displayMedia(mediaIndex) {
   lightboxMedia.innerHTML = media[mediaIndex].outerHTML
   lightboxTitle.innerHTML = media[mediaIndex].getAttribute('data-name')
